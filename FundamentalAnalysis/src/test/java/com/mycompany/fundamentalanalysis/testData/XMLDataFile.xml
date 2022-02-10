@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/XML/XMLDocument.xml to edit this template
+-->
+
+
+
+<companies>
+    <company>
+        <id>CD-PROJEKT</id>
+        <companyname>CD Projekt S.A.</companyname>
+        <index>WIG20</index>
+    </company>
+    <company>
+        <id>TAURON</id>
+        <companyname>Tauron Polska Energia S.A.</companyname>
+        <index>WIG20</index>
+    </company>
+    <company>
+        <id>PGE</id>
+        <companyname>PGE Polska Grupa Energetyczna S.A.</companyname>
+        <index>WIG20</index>
+    </company>
+    <company>
+        <id>DNP</id>
+        <companyname>Dino Polska S.A.</companyname>
+        <index>WIG20</index>
+    </company>
+</companies>
+
