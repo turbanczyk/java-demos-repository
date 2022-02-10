@@ -5,15 +5,21 @@
 package com.mycompany.fundamentalanalysis;
 
 import com.google.common.base.Preconditions;
+
 import java.io.File;
 import java.io.IOException;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
-import lombok.Getter;
-import lombok.Setter;
+
 import java.util.ArrayList;
+
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
+
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Configuration is the class which is responsible for set all application
@@ -36,7 +42,7 @@ public class Configuration {
      * @param configurationDirectoryPath Parameter determines where configuration
      * folder should be located.
      */
-    public Configuration (Path configurationDirectoryPath) {
+    public Configuration(Path configurationDirectoryPath) {
         Preconditions.checkArgument(configurationDirectoryPath != null, 
                 "configurationDirectoryPath can't be null");
         this.configurationDirectoryPath = configurationDirectoryPath;
@@ -55,14 +61,13 @@ public class Configuration {
      * @throws IOException Throw exception if operation of creation application 
      * configuration folder fail.
      */
-    public boolean createApplicationDataFolder () throws IOException {
-        boolean i = true;
+    public boolean createApplicationDataFolder() throws IOException {
         if(!configurationDataFolderExist){
             Files.createDirectories(configurationDirectoryPath);
             configurationDataFolderExist = true;
         } else return false;
         
-        return i;
+        return configurationDataFolderExist;
     }
     
     /**
@@ -75,7 +80,7 @@ public class Configuration {
      * @throws ParserConfigurationException Throw exception if operation of creation
      * preliminary list fail.
      */
-    public boolean createPreliminaryListOfCompanies (XMLStorage xmlStorage) 
+    public boolean createPreliminaryListOfCompanies(XMLStorage xmlStorage) 
             throws TransformerException, ParserConfigurationException {
         
         Preconditions.checkArgument(xmlStorage != null, 
@@ -85,7 +90,7 @@ public class Configuration {
         
         boolean i = true;
         //create new list if in directory is not existing xml file
-        File f = new File(configurationDirectoryPath+File.separator+"XMLDataFile.xml");
+        File f = new File(configurationDirectoryPath + File.separator + "XMLDataFile.xml");
         if(!f.exists()){
             ArrayList<Company> c = new ArrayList<Company>();
             c.add(new Company("CD-PROJEKT", "CD Projekt S.A.", "WIG20"));

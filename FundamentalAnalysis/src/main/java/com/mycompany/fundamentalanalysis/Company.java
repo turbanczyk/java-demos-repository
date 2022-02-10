@@ -4,12 +4,14 @@
  */
 package com.mycompany.fundamentalanalysis;
 
-import lombok.Getter;
-import lombok.Setter;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Company is the class which allow an application to 
@@ -45,7 +47,7 @@ public class Company {
      * @param companyName Parameter set company name
      * @param index Parameter determines to which index the company belongs on
      */
-    public Company (String companyId, String companyName, String index) {
+    public Company(String companyId, String companyName, String index) {
         Preconditions.checkArgument(!Strings.isNullOrEmpty(companyId), 
                 "Company Id can't be empty or null");
         Preconditions.checkArgument(!Strings.isNullOrEmpty(companyName), 
@@ -68,13 +70,13 @@ public class Company {
      * price/earnings 
      * @return Return average historical value of price/earnings indicator
      */
-    public double calculateHistoricalAveragePE () {
+    public double calculateHistoricalAveragePE() {
         Preconditions.checkArgument(historicalPE != null, 
                 "To calculate historical average PE please first set table historicalPE");
         
         double average = 0;
-        for (int i =0; i<historicalPE.length; i++){
-            average += historicalPE[i];
+        for (double i : historicalPE) {
+            average += i;
         }
         average = average / historicalPE.length;
         return roundDouble(average);
@@ -88,15 +90,16 @@ public class Company {
      * price/operational earnings 
      * @return Return average historical value of price/operational earnings indicator
      */
-    public double calculateHistoricalAveragePOE () {
+    public double calculateHistoricalAveragePOE() {
         Preconditions.checkArgument(historicalPOE != null, 
                 "To calculate historical average POE please first set table historicalPOE");
         
         double average = 0;
-        for (int i =0; i<historicalPOE.length; i++){
-            average += historicalPOE[i];
+        for (double i : historicalPOE) {
+            average += i;
         }
         average = average / historicalPOE.length;
+        
         return roundDouble(average);
     }
     
@@ -106,25 +109,26 @@ public class Company {
      * @param averageValue Parameter of historical value.
      * @return Return deviation current value from average value.
      */
-    public static double percentageDeviationFromAverage(double currentValue, double averageValue){
+    public static double calculatePercentageDeviationFromAverage(double currentValue, 
+            double averageValue) {
         
         double deviation = 0;
         if(currentValue != 0){
-            deviation = (averageValue/currentValue)-1;
+            deviation = (averageValue / currentValue) - 1;
         }
         //multiply by 100 to return %
-        deviation = roundDouble(deviation*100);
+        deviation = roundDouble(deviation * 100);
         return deviation;
     }
     
     /**
      * The metod used to round the double number to two decimal places
-     * @param value Number double type.
+     * @param doubleValue Number double type.
      * @return Number double type, rounded to two decimal places.
      */
-    private static double roundDouble(double value){
+    private static double roundDouble(double doubleValue) {
         int places = 2;
-        BigDecimal bd = new BigDecimal(Double.toString(value));
+        BigDecimal bd = new BigDecimal(Double.toString(doubleValue));
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }

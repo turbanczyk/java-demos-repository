@@ -282,17 +282,17 @@ public class CompanyTest {
     }
 
     /**
-     * Test of percentageDeviationFromAverage method, of class Company.
+     * Test of calculatePercentageDeviationFromAverage method, of class Company.
      */
     @Test
-    public void testPercentageDeviationFromAverage() {
+    public void testCalculatePercentageDeviationFromAverageomAverage() {
         System.out.println("percentageDeviationFromAverage");
         //check with currentValue 0
-        assertThat(com.percentageDeviationFromAverage(0, 9)).isEqualTo(0);
+        assertThat(com.calculatePercentageDeviationFromAverage(0, 9)).isEqualTo(0);
         //next
-        assertThat(com.percentageDeviationFromAverage(9.85, 29.67)).isCloseTo(201.22, Percentage.withPercentage(0.1));
-        assertThat(com.percentageDeviationFromAverage(9.46, 6.16)).isCloseTo(-34.88, Percentage.withPercentage(0.1));
-        assertThat(com.percentageDeviationFromAverage(8.9, 12.07)).isCloseTo(35.62, Percentage.withPercentage(0.1));
+        assertThat(com.calculatePercentageDeviationFromAverage(9.85, 29.67)).isCloseTo(201.22, Percentage.withPercentage(0.1));
+        assertThat(com.calculatePercentageDeviationFromAverage(9.46, 6.16)).isCloseTo(-34.88, Percentage.withPercentage(0.1));
+        assertThat(com.calculatePercentageDeviationFromAverage(8.9, 12.07)).isCloseTo(35.62, Percentage.withPercentage(0.1));
     }
     
 }

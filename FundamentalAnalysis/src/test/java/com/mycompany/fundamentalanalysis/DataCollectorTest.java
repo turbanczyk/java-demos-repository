@@ -269,10 +269,10 @@ public class DataCollectorTest {
      * Test of getHtml method, of class DataCollector.
      */
     @Test
-    public void testGetHtml() {
-        System.out.println("getHtml");
+    public void testGetExternalSourceAddress() {
+        System.out.println("getExternalSourceAddress");
         
-        assertThat(tauron.getHtml()).isEqualTo("https://www.biznesradar.pl/");
+        assertThat(tauron.getExternalSourceAddress()).isEqualTo("https://www.biznesradar.pl/");
     }
 
     /**

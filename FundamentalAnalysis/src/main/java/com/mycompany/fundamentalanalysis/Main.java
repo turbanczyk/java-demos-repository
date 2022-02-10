@@ -6,9 +6,13 @@ package com.mycompany.fundamentalanalysis;
 
 import com.mycompany.fundamentalanalysis.gui.MainJFrame;
 import com.mycompany.fundamentalanalysis.gui.ProgressBar;
-import java.util.ArrayList;
+
 import java.nio.file.Paths;
+
 import java.io.File;
+
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -27,7 +31,8 @@ public class Main {
 
         //Step 1 - Set configuration directory
         Configuration conf = new Configuration(Paths.get(System.getProperty("user.home")
-                +File.separator+"Documents"+File.separator+"FundamentalAnalysisConfiguration"));
+                + File.separator + "Documents" + File.separator 
+                + "FundamentalAnalysisConfiguration"));
         try {
             conf.createApplicationDataFolder();
         } catch (Exception e) {
@@ -37,7 +42,7 @@ public class Main {
         }
         
         //Step 2 - Get list of companies from configuration
-        XMLStorage storagePoint = new XMLStorage (conf.getConfigurationDirectoryPath()+"");
+        XMLStorage storagePoint = new XMLStorage (conf.getConfigurationDirectoryPath() + "");
         //create new list in configuration if not exist
         try {
             boolean b = conf.createPreliminaryListOfCompanies(storagePoint);
@@ -48,7 +53,8 @@ public class Main {
                         "Informacja", JOptionPane.INFORMATION_MESSAGE);
             }
         } catch (Exception e){
-            ErrorReport error = new ErrorReport("Domyślna lista nie istnieje, próba jest utworzenia nie powiodła się."
+            ErrorReport error = new ErrorReport("Domyślna lista nie istnieje, "
+                    + "próba jest utworzenia nie powiodła się."
                     + " Utwórz listę ręcznie w katalogu konfiguracyjnym.");
             error.showErrorInFrame();
             try {

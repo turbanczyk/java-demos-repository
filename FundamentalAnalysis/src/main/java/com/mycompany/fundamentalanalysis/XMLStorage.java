@@ -6,15 +6,13 @@ package com.mycompany.fundamentalanalysis;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
-import java.util.ArrayList;
+
 import java.io.IOException;
-import javax.xml.XMLConstants;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-import lombok.Getter;
-import lombok.Setter;
 import java.io.File;
+
+import java.util.ArrayList;
+
+import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -23,8 +21,15 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+
+import lombok.Getter;
+import lombok.Setter;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  * XMLStorage is the class which allow an application to 
@@ -45,7 +50,7 @@ public class XMLStorage {
      * Constructor with one parameter.
      * @param configurationFolderPath Parameter is path to configuration directory.
      */
-    public XMLStorage (String configurationFolderPath) {
+    public XMLStorage(String configurationFolderPath) {
         Preconditions.checkArgument(!Strings.isNullOrEmpty(configurationFolderPath), 
                 "Patch to directory can't be empty or null");
         this.configurationFolderPath = configurationFolderPath;
@@ -58,13 +63,13 @@ public class XMLStorage {
      * @throws SAXException Throw exception when method fail.
      * @throws IOException Throw exception when method fail.
      */
-    public ArrayList<Company> getAllCompanies () throws ParserConfigurationException, 
-            SAXException , IOException{
+    public ArrayList<Company> getAllCompanies() throws ParserConfigurationException, 
+            SAXException , IOException {
         
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
         DocumentBuilder db = dbf.newDocumentBuilder();
-        Document doc = db.parse(new File(configurationFolderPath+File.separator+"XMLDataFile.xml"));
+        Document doc = db.parse(new File(configurationFolderPath+File.separator + "XMLDataFile.xml"));
         
         doc.getDocumentElement().normalize();
         
@@ -93,7 +98,7 @@ public class XMLStorage {
      * @throws TransformerException Throw exception when method fail.
      * @throws ParserConfigurationException Throw exception when method fail.
      */
-    public void setCompanies (ArrayList<Company> companiesList) throws TransformerException, 
+    public void setCompanies(ArrayList<Company> companiesList) throws TransformerException, 
             ParserConfigurationException {
         Preconditions.checkArgument(!companiesList.isEmpty() || companiesList != null, 
                 "Companies list argument can't be empty or null");

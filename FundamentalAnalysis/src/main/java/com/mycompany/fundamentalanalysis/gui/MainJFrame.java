@@ -7,6 +7,7 @@ package com.mycompany.fundamentalanalysis.gui;
 
 import com.mycompany.fundamentalanalysis.Index;
 import com.mycompany.fundamentalanalysis.Company;
+
 import javax.swing.JFrame;
 
 /**
@@ -288,7 +289,7 @@ public class MainJFrame extends javax.swing.JFrame {
      * @param jtable Table where content should be set or update.
      * @param index Parameters which should be insert in table.
      */
-    private void setJTable1 (javax.swing.JTable jtable, Index index) {
+    private void setJTable1(javax.swing.JTable jtable, Index index) {
         
         javax.swing.table.DefaultTableModel dm = (javax.swing.table.DefaultTableModel)jtable.getModel();
         dm.setRowCount(index.getCompanyList().size());
@@ -305,7 +306,7 @@ public class MainJFrame extends javax.swing.JFrame {
      * @param jtable Table where content should be set or update.
      * @param index Parameters which should be insert in table.
      */
-    private void setJTable2PE (javax.swing.JTable jtable, Index index) {
+    private void setJTable2PE(javax.swing.JTable jtable, Index index) {
         
         javax.swing.table.DefaultTableModel dm = (javax.swing.table.DefaultTableModel)jtable.getModel();
         dm.setRowCount(index.getCompanyList().size());
@@ -314,7 +315,7 @@ public class MainJFrame extends javax.swing.JFrame {
             jtable.getModel().setValueAt(index.getCompanyList().get(i).getCompanyName(), i, 0);
             jtable.getModel().setValueAt(index.getCompanyList().get(i).getCurrentPE(), i, 1);
             jtable.getModel().setValueAt(index.getCompanyList().get(i).calculateHistoricalAveragePE(), i, 2);
-            jtable.getModel().setValueAt(Company.percentageDeviationFromAverage(
+            jtable.getModel().setValueAt(Company.calculatePercentageDeviationFromAverage(
                     index.getCompanyList().get(i).getCurrentPE(), 
                     index.getCompanyList().get(i).calculateHistoricalAveragePE()), i, 3);
         }
@@ -325,7 +326,7 @@ public class MainJFrame extends javax.swing.JFrame {
      * @param jtable Table where content should be set or update.
      * @param index Parameters which should be insert in table.
      */
-    private void setJTable2POE (javax.swing.JTable jtable, Index index) {
+    private void setJTable2POE(javax.swing.JTable jtable, Index index) {
         
         javax.swing.table.DefaultTableModel dm = (javax.swing.table.DefaultTableModel)jtable.getModel();
         dm.setRowCount(index.getCompanyList().size());
@@ -334,7 +335,7 @@ public class MainJFrame extends javax.swing.JFrame {
             jtable.getModel().setValueAt(index.getCompanyList().get(i).getCompanyName(), i, 0);
             jtable.getModel().setValueAt(index.getCompanyList().get(i).getCurrentPOE(), i, 1);
             jtable.getModel().setValueAt(index.getCompanyList().get(i).calculateHistoricalAveragePOE(), i, 2);
-            jtable.getModel().setValueAt(Company.percentageDeviationFromAverage(
+            jtable.getModel().setValueAt(Company.calculatePercentageDeviationFromAverage(
                     index.getCompanyList().get(i).getCurrentPOE(), 
                     index.getCompanyList().get(i).calculateHistoricalAveragePOE()), i, 3);
         }

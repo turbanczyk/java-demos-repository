@@ -5,7 +5,9 @@
 package com.mycompany.fundamentalanalysis.gui;
 
 import com.google.common.base.Preconditions;
-import javax.swing.*;  
+
+import javax.swing.JProgressBar;
+import javax.swing.JFrame;
 
 /**
  * ProgressBar is the class which allow an application to 
@@ -23,7 +25,7 @@ public class ProgressBar extends JFrame{
     /**
      * Constructor with no parameters. 
      */
-    public ProgressBar(){    
+    public ProgressBar() {    
         jb=new JProgressBar(0,100);    
         jb.setBounds(40,40,160,30);         
         jb.setValue(0);    
@@ -37,26 +39,26 @@ public class ProgressBar extends JFrame{
     
     /**
      * The method used to set progress value.
-     * @param i Parameter specifying the advance.
+     * @param settedValue Parameter specifying the advance.
      */
-    public void setPercents(int i){
-        Preconditions.checkArgument(i<=jb.getMaximum(), 
+    public void setPercents(int settedValue){
+        Preconditions.checkArgument(settedValue<=jb.getMaximum(), 
                 "Progress bar value can't be higher than maximum");
-        jb.setValue(i);
+        jb.setValue(settedValue);
     }
     
     /**
      * The method used to close progress bar windows.
      */
-    public void closeProgressBar(){
+    public void closeProgressBar() {
         dispose();
     } 
     
     /**
      * The method used to set maximum value of process progress.
-     * @param i Parameter specifying the maximum value of process progress.
+     * @param settedValue Parameter specifying the maximum value of process progress.
      */
-    public void setMaximum(int i){
-        jb.setMaximum(i);
+    public void setMaximum(int settedValue) {
+        jb.setMaximum(settedValue);
     }
 }

@@ -6,14 +6,19 @@ package com.mycompany.fundamentalanalysis;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
-import javax.swing.JOptionPane;
+
 import java.io.File;
 import java.io.IOException;
+import java.io.FileWriter;
+
+import java.nio.file.Path;
+
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.io.FileWriter;
-import java.nio.file.Path;
+
+import javax.swing.JOptionPane;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,7 +41,7 @@ public class ErrorReport {
      * Class constructor with one parameter.
      * @param errorMessage Parameter is error message.
      */
-    public ErrorReport (String errorMessage) {
+    public ErrorReport(String errorMessage) {
         Preconditions.checkArgument(!Strings.isNullOrEmpty(errorMessage), 
                 "Error message can't be empty or null");
         this.errorMessage = errorMessage;
@@ -44,13 +49,13 @@ public class ErrorReport {
     
     /**
      * The method used to save in file error message.
-     * @param directory Parameter determine directory where error message will be
-     * save
+     * @param storageDirectory Parameter determine storageDirectory where error message will be
+ save
      * @return Return name of file where error message was saved.
      * @throws IOException Throw exception in case where operation failed. 
      */
-    public String saveInFile (Path directory) throws IOException  {
-        Preconditions.checkArgument(directory != null, 
+    public String saveInFile(Path storageDirectory) throws IOException  {
+        Preconditions.checkArgument(storageDirectory != null, 
                 "Argument directory can't be null");
         
         LocalDate date = LocalDate.now();
@@ -59,25 +64,27 @@ public class ErrorReport {
         String fileName = "error log " + date.format(DateTimeFormatter.ofPattern("yy-MM-dd")) +
                 " " + time.format(DateTimeFormatter.ofPattern("HH-mm-ss-SSS"));
         
-        File errorFile = new File(new File(directory.toUri()), fileName);
+        File errorFile = new File(new File(storageDirectory.toUri()), fileName);
         errorFile.createNewFile();
         FileWriter saveToFile = new FileWriter (errorFile);
         saveToFile.write(errorMessage);
         saveToFile.close();
+        
         return fileName;
     }
     
     /**
      * The method used to show in graphical form error message (as a window).
      */
-    public void showErrorInFrame () {
-        JOptionPane.showMessageDialog(null, errorMessage, "Błąd programu", JOptionPane.ERROR_MESSAGE);
+    public void showErrorInFrame() {
+        JOptionPane.showMessageDialog(null, errorMessage, "Błąd programu", 
+                JOptionPane.ERROR_MESSAGE);
     }
     
     /**
      * The method used to show in standard system output error message. 
      */
-    public void showErrorInConsole () {
+    public void showErrorInConsole() {
         System.out.println(errorMessage);
     }
 }

@@ -6,16 +6,19 @@ package com.mycompany.fundamentalanalysis;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+
 import lombok.Getter;
 import lombok.Setter;
+
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 /**
  * DataCollector is the class which allow collect data from external source
@@ -31,7 +34,7 @@ public class DataCollector {
     private Company company;
     private String currentIndicatorsString;
     private String historicalIndicatorsString;
-    private final String html = "https://www.biznesradar.pl/";
+    private final String externalSourceAddress = "https://www.biznesradar.pl/";
     
     /**
      * Constructor with one parameter.
@@ -39,7 +42,7 @@ public class DataCollector {
      * and in which collected data will
      * be storage.
      */
-    public DataCollector (Company company) {
+    public DataCollector(Company company) {
         Preconditions.checkArgument(company != null, 
                 "Company can't be null");
         this.company = company;
@@ -51,7 +54,7 @@ public class DataCollector {
      * @throws Exception Throw exception in situation when gatering of information
      * will be not possible.
      */
-    public void collectData () throws Exception {
+    public void collectData() throws Exception {
         currentIndicatorsString = collectCurrentIndicators();
         historicalIndicatorsString = collectHistoricalIndicators();
     }
@@ -61,7 +64,7 @@ public class DataCollector {
      * necessary is to start collectData() method
      * @return Return current value of P/E indicator. 
      */
-    public double getCurrentPE () {
+    public double getCurrentPE() {
         Preconditions.checkArgument(!Strings.isNullOrEmpty(currentIndicatorsString), 
                 "currentIndicatorString can't be empty or null");
         
@@ -82,7 +85,7 @@ public class DataCollector {
      * necessary is to start collectData() method
      * @return Return current value of P/OE indicator. 
      */
-    public double getCurrentPOE () {
+    public double getCurrentPOE() {
         Preconditions.checkArgument(!Strings.isNullOrEmpty(currentIndicatorsString), 
                 "currentIndicatorString can't be empty or null");
         
@@ -105,7 +108,7 @@ public class DataCollector {
      * necessary is to start collectData() method
      * @return Return historical value of P/E indicator. 
      */
-    public double [] getHistoricalPE () {
+    public double [] getHistoricalPE() {
         Preconditions.checkArgument(!Strings.isNullOrEmpty(historicalIndicatorsString), 
                 "historicalIndicatorsString can't be empty or null");
         
@@ -138,7 +141,7 @@ public class DataCollector {
      * necessary is to start collectData() method
      * @return Return historical value of P/OE indicator. 
      */
-    public double [] getHistoricalPOE () {
+    public double [] getHistoricalPOE() {
         Preconditions.checkArgument(!Strings.isNullOrEmpty(historicalIndicatorsString), 
                 "historicalIndicatorsString can't be empty or null");
         
@@ -174,8 +177,8 @@ public class DataCollector {
      * @throws Exception Throw exception in situation when gatering of information
      * will be not possible.
      */
-    private String collectCurrentIndicators () throws Exception {
-        Connection connect = Jsoup.connect(html+"notowania/"+company.getCompanyId());
+    private String collectCurrentIndicators() throws Exception {
+        Connection connect = Jsoup.connect(externalSourceAddress+"notowania/"+company.getCompanyId());
         Document doc = connect.get();
         Elements htmlDiv = doc.select("div.element.ratios");
         return htmlDiv.text();
@@ -189,8 +192,8 @@ public class DataCollector {
      * @throws Exception Throw exception in situation when gatering of information
      * will be not possible.
      */
-    private String collectHistoricalIndicators () throws Exception {
-        Connection connect = Jsoup.connect(html+"wskazniki-wartosci-rynkowej/"+company.getCompanyId());
+    private String collectHistoricalIndicators() throws Exception {
+        Connection connect = Jsoup.connect(externalSourceAddress+"wskazniki-wartosci-rynkowej/"+company.getCompanyId());
         Document doc = connect.get();
         Elements htmlDiv = doc.select("table.report-table");
         
