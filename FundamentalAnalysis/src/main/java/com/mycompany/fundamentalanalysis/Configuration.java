@@ -93,6 +93,7 @@ public class Configuration {
         File f = new File(configurationDirectoryPath + File.separator + "XMLDataFile.xml");
         if(!f.exists()){
             ArrayList<Company> c = new ArrayList<Company>();
+            //WIG20 all companies
             c.add(new Company("CD-PROJEKT", "CD Projekt S.A.", "WIG20"));
             c.add(new Company("TAURON", "Tauron Polska Energia S.A.", "WIG20"));
             c.add(new Company("PKO", "Powszechna Kasa Oszczędności Bank Polski S.A.", "WIG20"));
@@ -113,7 +114,27 @@ public class Configuration {
             c.add(new Company("JSW-JASTRZEBSKA-SPOLKA-WEGLOWA", "Jastrzębska Spółka Węglowa S.A.", "WIG20"));
             c.add(new Company("CCC", "CCC S.A.", "WIG20"));
             c.add(new Company("MERCATOR", "Mercator Medical S.A.", "WIG20"));
+            
+            //mWIG40 partial
             c.add(new Company("AMICA", "Amica Wronki S.A.", "mWIG40"));
+            c.add(new Company("11-BIT-STUDIOS", "11 Bit Studio S.A.", "mWIG40"));
+            c.add(new Company("BENEFIT-SYSTEMS", "Benefit Systems S.A.", "mWIG40"));
+            c.add(new Company("BUDIMEX", "Budimex S.A.", "mWIG40"));
+            c.add(new Company("DOM-DEVELOPMENT", "Dom Development S.A.", "mWIG40"));
+            c.add(new Company("FAMUR", "Famur S.A.", "mWIG40"));
+            c.add(new Company("ATT", "Grupa Azoty S.A.", "mWIG40"));
+            c.add(new Company("INTER-CARS", "Inter Cars S.A.", "mWIG40"));
+            
+            //sWIG80 partial
+            c.add(new Company("ASSECO-BUSINESS-SOLUTIONS", "Asseco Business Solutions S.A.", "sWIG80"));
+            c.add(new Company("ATAL", "Atal S.A.", "sWIG80"));
+            c.add(new Company("ABE", "AB S.A.", "sWIG80"));
+            c.add(new Company("ACG", "AC S.A.", "sWIG80"));
+            c.add(new Company("ACTION", "Action S.A.", "sWIG80"));
+            c.add(new Company("AGORA", "Agora S.A.", "sWIG80"));
+            c.add(new Company("AMBRA", "Ambra S.A.", "sWIG80"));
+            c.add(new Company("ALUMETAL", "Alumetal S.A.", "sWIG80"));
+            c.add(new Company("APR", "Auto Partner S.A.", "sWIG80"));
             
             //create default file
             xmlStorage.setCompanies(c);
