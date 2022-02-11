@@ -7,6 +7,8 @@ package com.mycompany.fundamentalanalysis;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 
+import java.io.IOException;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
@@ -51,10 +53,10 @@ public class DataCollector {
     /**
      * The metod used to collect data from external source (internet service), start
      * this method is necessary to collect data.
-     * @throws Exception Throw exception in situation when gatering of information
+     * @throws IOException Throw exception in situation when gatering of information
      * will be not possible.
      */
-    public void collectData() throws Exception {
+    public void collectData() throws IOException {
         currentIndicatorsString = collectCurrentIndicators();
         historicalIndicatorsString = collectHistoricalIndicators();
     }
@@ -177,7 +179,7 @@ public class DataCollector {
      * @throws Exception Throw exception in situation when gatering of information
      * will be not possible.
      */
-    private String collectCurrentIndicators() throws Exception {
+    private String collectCurrentIndicators() throws IOException {
         Connection connect = Jsoup.connect(externalSourceAddress+"notowania/"+company.getCompanyId());
         Document doc = connect.get();
         Elements htmlDiv = doc.select("div.element.ratios");
@@ -192,7 +194,7 @@ public class DataCollector {
      * @throws Exception Throw exception in situation when gatering of information
      * will be not possible.
      */
-    private String collectHistoricalIndicators() throws Exception {
+    private String collectHistoricalIndicators() throws IOException {
         Connection connect = Jsoup.connect(externalSourceAddress+"wskazniki-wartosci-rynkowej/"+company.getCompanyId());
         Document doc = connect.get();
         Elements htmlDiv = doc.select("table.report-table");

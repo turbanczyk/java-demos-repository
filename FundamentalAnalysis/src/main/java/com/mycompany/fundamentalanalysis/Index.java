@@ -44,7 +44,7 @@ public class Index {
     
     /**
      * The method used to add object Company to index.
-     * @param c Parameter Company which will be add to index.
+     * @param company Parameter Company which will be add to index.
      */
     public void addCompanyToIndex(Company company) {
         Preconditions.checkArgument(company != null, 
