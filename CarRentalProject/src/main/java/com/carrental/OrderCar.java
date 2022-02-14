@@ -21,7 +21,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor(access=AccessLevel.PRIVATE, force=true)
 @Entity
-public class CarOrder {
+public class OrderCar {
     
     @Id
     private String id;
@@ -31,7 +31,7 @@ public class CarOrder {
     private LocalDate endDate;
     private LocalDate placedAt;
     
-    public CarOrder(String id, String userId, String carId, LocalDate startDate,
+    public OrderCar(String id, String userId, String carId, LocalDate startDate,
             LocalDate endDate, LocalDate placedAt) {
         
         this.id = id;

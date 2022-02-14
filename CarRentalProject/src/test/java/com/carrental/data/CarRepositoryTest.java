@@ -61,7 +61,7 @@ public class CarRepositoryTest {
         assertThat(carsList.size()).isEqualTo(3);
         
         //check records
-        assertThat(carsList.get(0).getId()).isEqualTo("123e5567-e89b-42d3-a456-556642440000");
+        assertThat(carsList.get(0).getId()).isEqualTo("samochod-1-id");
         assertThat(carsList.get(0).getModel()).isEqualTo("Mondeo");
         assertThat(carsList.get(0).getBrand()).isEqualTo("Ford");
         assertThat(carsList.get(0).getPricePerDay()).isEqualTo(130);
@@ -73,7 +73,7 @@ public class CarRepositoryTest {
         assertThat(carsList.get(0).getCategory()).isEqualTo("małe");
         assertThat(carsList.get(0).getLocalization()).isEqualTo("Częstochowa");
         
-        assertThat(carsList.get(2).getId()).isEqualTo("123e5567-e89b-42d3-a456-556642440002");
+        assertThat(carsList.get(2).getId()).isEqualTo("samochod-3-id");
         assertThat(carsList.get(2).getModel()).isEqualTo("Focus");
         assertThat(carsList.get(2).getBrand()).isEqualTo("Ford");
         assertThat(carsList.get(2).getPricePerDay()).isEqualTo(114);

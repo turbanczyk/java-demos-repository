@@ -7,7 +7,7 @@ package com.carrental.data;
 import java.util.List;
 import java.time.LocalDate;
 
-import com.carrental.CarOrder;
+import com.carrental.OrderCar;
 
 import org.springframework.data.repository.CrudRepository;
 
@@ -15,7 +15,7 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author tomeku
  */
-public interface CarOrderRepository extends CrudRepository<CarOrder, String> {
+public interface CarOrderRepository extends CrudRepository<OrderCar, String> {
     //List<CarOrder> findCarOrderIsAfterStartDate(LocalDate date);
-    List<CarOrder> findByStartDateIsAfter(LocalDate date);
+    List<OrderCar> findByStartDateIsAfter(LocalDate date);
 }

@@ -35,7 +35,7 @@ create table if not exists User (
     credit_card_id varchar(100) not null
 );
 
-create table if not exists CarOrder (
+create table if not exists Order_Car (
     id varchar(100) not null,
     user_id varchar(100) not null,
     car_id varchar(100) not null,
