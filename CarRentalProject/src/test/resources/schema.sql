@@ -38,9 +38,9 @@ create table if not exists User (
 create table if not exists CarOrder (
     id varchar(100) not null,
     user_id varchar(100) not null,
+    car_id varchar(100) not null,
     start_date date not null,
     end_date date not null,
-    car_id varchar(100) not null,
     placed_at date not null
 );
 
