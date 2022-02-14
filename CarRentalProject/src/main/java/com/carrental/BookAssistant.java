@@ -4,8 +4,18 @@
  */
 package com.carrental;
 
+import com.carrental.data.CarRepository;
+
+import java.util.List;
+
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.AccessLevel;
+
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 /**
  *
  * @author tomeku
@@ -13,11 +23,19 @@ import lombok.Setter;
        
 @Getter
 @Setter
+@NoArgsConstructor
+//@Service
 public class BookAssistant {
     
-    public BookAssistant() {
-        
+    //@Autowired
+    private CarRepository carRepository;
+    
+    @Autowired
+    public BookAssistant(CarRepository carRepository) {
+        this.carRepository = carRepository;
     }
+    
+    //public BookAssistant() { }
     
     public boolean isTimePeriodOutOfTimePeriod(TimePeriod checkingPeriod, TimePeriod basicPeriod) {
         boolean i = false;
@@ -33,5 +51,12 @@ public class BookAssistant {
         }
         
         return i;
+    }
+    
+    public List<Car> getCarsAvailableInTimePeriodAndLocalization(TimePeriod timePeriod, 
+            String localization) {
+        
+        
+        return null;
     }
 }

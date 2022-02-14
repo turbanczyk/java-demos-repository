@@ -4,16 +4,22 @@
  */
 package com.carrental;
 
+import com.carrental.data.CarRepository;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import java.time.LocalDate;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.springframework.ui.Model;
 
 /**
  *
@@ -24,6 +30,7 @@ public class HomeController {
     
     private JdbcTemplate jdbc;
     
+    
     @Autowired
     public HomeController(JdbcTemplate jdbc) {
         this.jdbc = jdbc;
@@ -33,7 +40,7 @@ public class HomeController {
     public String home(Model model) {
         
         List<String> listOfCities = null;
-        listOfCities = jdbc.query("select localization from Cars", this::mapRowToString);
+        listOfCities = jdbc.query("select localization from Car", this::mapRowToString);
         
         //remove duplicates
         List<String> cleanedListOfCities = removeDuplicates(listOfCities);
@@ -42,6 +49,10 @@ public class HomeController {
 
         //add to model
         model.addAttribute("cities", cleanedListOfCities);
+        
+        //set time in input, calendar fields
+        LocalDate date = LocalDate.now();
+        model.addAttribute("date", date.toString());
         
         return "home";
     }

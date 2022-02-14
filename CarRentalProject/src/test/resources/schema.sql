@@ -50,3 +50,4 @@ create table if not exists CreditCard (
     expiration date not null,
     cvv integer not null
 );
+

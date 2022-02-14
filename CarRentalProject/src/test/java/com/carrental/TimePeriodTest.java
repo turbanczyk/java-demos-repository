@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Disabled;
 import java.time.LocalDate;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Assertions;
 
 /**
@@ -20,7 +21,11 @@ import org.junit.jupiter.api.Assertions;
  */
 public class TimePeriodTest {
     
+    private TimePeriod timePeriod;
+    
     public TimePeriodTest() {
+        timePeriod = new TimePeriod(LocalDate.of(2022, 1, 22), 
+                LocalDate.of(2022, 1, 25));
     }
     
     @BeforeAll
@@ -74,50 +79,38 @@ public class TimePeriodTest {
      * Test of getStartDate method, of class TimePeriod.
      */
     @Test
-    @Disabled
     public void testGetStartDate() {
         System.out.println("getStartDate");
-        TimePeriod instance = null;
-        
+        assertThat(timePeriod.getStartDate()).isEqualTo(LocalDate.of(2022, 1, 22));
     }
 
     /**
      * Test of getEndDate method, of class TimePeriod.
      */
     @Test
-    @Disabled
     public void testGetEndDate() {
         System.out.println("getEndDate");
-        TimePeriod instance = null;
-        
+        assertThat(timePeriod.getEndDate()).isEqualTo(LocalDate.of(2022, 1, 25));
     }
 
     /**
      * Test of setStartDate method, of class TimePeriod.
      */
     @Test
-    @Disabled
     public void testSetStartDate() {
         System.out.println("setStartDate");
-        LocalDate startDate = null;
-        TimePeriod instance = null;
-        instance.setStartDate(startDate);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        timePeriod.setStartDate(LocalDate.of(2019, 3, 1));
+        assertThat(timePeriod.getStartDate()).isEqualTo(LocalDate.of(2019, 3, 1));
     }
 
     /**
      * Test of setEndDate method, of class TimePeriod.
      */
     @Test
-    @Disabled
     public void testSetEndDate() {
         System.out.println("setEndDate");
-        LocalDate endDate = null;
-        TimePeriod instance = null;
-        instance.setEndDate(endDate);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        timePeriod.setEndDate(LocalDate.of(2019, 3, 1));
+        assertThat(timePeriod.getEndDate()).isEqualTo(LocalDate.of(2019, 3, 1));
     }
     
 }
