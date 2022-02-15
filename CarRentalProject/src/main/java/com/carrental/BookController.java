@@ -5,6 +5,7 @@
 package com.carrental;
 
 import com.carrental.data.CarRepository;
+import com.carrental.data.CarOrderRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,10 +26,12 @@ import javax.servlet.http.HttpServletRequest;
 public class BookController {
     
     private CarRepository carRepository;
+    private CarOrderRepository carOrderRepository;
     
     @Autowired
-    public BookController(CarRepository carRepository) {
+    public BookController(CarRepository carRepository, CarOrderRepository carOrderRepository) {
         this.carRepository = carRepository;
+        this.carOrderRepository = carOrderRepository;
     }
     
     @PostMapping("/book")
@@ -41,7 +44,7 @@ public class BookController {
         
         //find available cars
         TimePeriod bookTimePeriod = new TimePeriod(rentStartDate, rentEndDate);
-        BookAssistant bookAssistant = new BookAssistant(carRepository);
+        BookAssistant bookAssistant = new BookAssistant(carRepository, carOrderRepository);
         List<Car> carList = 
                 bookAssistant.getCarsAvailableInTimePeriodAndLocalization(bookTimePeriod, localization);
         

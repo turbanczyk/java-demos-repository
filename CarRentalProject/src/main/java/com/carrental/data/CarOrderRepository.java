@@ -16,6 +16,6 @@ import org.springframework.data.repository.CrudRepository;
  * @author tomeku
  */
 public interface CarOrderRepository extends CrudRepository<OrderCar, String> {
-    //List<CarOrder> findCarOrderIsAfterStartDate(LocalDate date);
     List<OrderCar> findByStartDateIsAfter(LocalDate date);
+    List<OrderCar> findAll();
 }

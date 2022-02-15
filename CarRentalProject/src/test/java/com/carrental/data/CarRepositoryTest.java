@@ -58,7 +58,7 @@ public class CarRepositoryTest {
         System.out.println("findAll");
         List<Car> carsList = carRepository.findAll();
         //check amount of records
-        assertThat(carsList.size()).isEqualTo(3);
+        assertThat(carsList.size()).isEqualTo(8);
         
         //check records
         assertThat(carsList.get(0).getId()).isEqualTo("samochod-1-id");
@@ -85,5 +85,17 @@ public class CarRepositoryTest {
         assertThat(carsList.get(2).getCategory()).isEqualTo("kombi");
         assertThat(carsList.get(2).getLocalization()).isEqualTo("Gliwice");
     }
+
+    /**
+     * Test of findByLocalizationIs method, of class CarRepository.
+     */
+    @Test
+    public void testFindByLocalizationIs() {
+        System.out.println("findByLocalizationIs");
+        List<Car> carsList = carRepository.findByLocalizationIs("Gliwice");
+        assertThat(carsList.size()).isEqualTo(3);
+    }
+
+
     
 }

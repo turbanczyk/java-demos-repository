@@ -18,4 +18,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CarRepository extends CrudRepository<Car, String> {
     List<Car> findAll();
+    List<Car> findByLocalizationIs(String localization);
 }

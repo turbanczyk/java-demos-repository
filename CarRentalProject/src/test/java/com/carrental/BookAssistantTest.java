@@ -5,6 +5,7 @@
 package com.carrental;
 
 import com.carrental.data.CarRepository;
+import com.carrental.data.CarOrderRepository;
 import java.time.LocalDate;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.withPrecision;
@@ -30,10 +31,13 @@ import org.springframework.test.context.ActiveProfiles;
 public class BookAssistantTest {
     
     private CarRepository carRepository;
+    private CarOrderRepository carOrderRepository;
     
     @Autowired
-    public BookAssistantTest(CarRepository carRepository) {
+    public BookAssistantTest(CarRepository carRepository, 
+            CarOrderRepository carOrderRepository) {
         this.carRepository = carRepository;
+        this.carOrderRepository = carOrderRepository;
     }
     
     @BeforeAll
@@ -91,11 +95,58 @@ public class BookAssistantTest {
      * Test of getCarsAvailableInTimePeriodAndLocalization method, of class BookAssistant.
      */
     @Test
-    @Disabled
     public void testGetCarsAvailableInTimePeriodAndLocalization() {
         System.out.println("getCarsAvailableInTimePeriodAndLocalization");
-        BookAssistant bookAssistant = new BookAssistant(carRepository);
+        BookAssistant bookAssistant = new BookAssistant(carRepository, carOrderRepository);
         
+        TimePeriod timePeriod = new TimePeriod(LocalDate.of(2022, 1, 22), LocalDate.of(2022, 1, 25));
+        String localization = "Gliwice";
+        List<Car> availableCars = bookAssistant.getCarsAvailableInTimePeriodAndLocalization(timePeriod, localization);
+        assertThat(availableCars.size()).isEqualTo(1);
+        assertThat(availableCars.get(0).getId()).isEqualTo("samochod-3-id");
+        
+        timePeriod = new TimePeriod(LocalDate.of(2022, 2, 22), LocalDate.of(2022, 2, 25));
+        localization = "Rybnik";
+        availableCars = bookAssistant.getCarsAvailableInTimePeriodAndLocalization(timePeriod, localization);
+        assertThat(availableCars.size()).isEqualTo(3);
+        assertThat(availableCars.get(0).getId()).isEqualTo("samochod-2-id");
+        assertThat(availableCars.get(1).getId()).isEqualTo("samochod-5-id");
+        assertThat(availableCars.get(2).getId()).isEqualTo("samochod-7-id");
+        
+        
+        timePeriod = new TimePeriod(LocalDate.of(2022, 1, 22), LocalDate.of(2022, 1, 23));
+        localization = "Częstochowa";
+        availableCars = bookAssistant.getCarsAvailableInTimePeriodAndLocalization(timePeriod, localization);
+        assertThat(availableCars.size()).isEqualTo(0);
+        
+        timePeriod = new TimePeriod(LocalDate.of(2022, 1, 16), LocalDate.of(2022, 1, 18));
+        localization = "Gliwice";
+        availableCars = bookAssistant.getCarsAvailableInTimePeriodAndLocalization(timePeriod, localization);
+        assertThat(availableCars.size()).isEqualTo(3);
+        
+        timePeriod = new TimePeriod(LocalDate.of(2022, 1, 16), LocalDate.of(2022, 1, 18));
+        localization = "Gliwice";
+        availableCars = bookAssistant.getCarsAvailableInTimePeriodAndLocalization(timePeriod, localization);
+        assertThat(availableCars.size()).isEqualTo(3);
+        
+        timePeriod = new TimePeriod(LocalDate.of(2022, 1, 24), LocalDate.of(2022, 1, 24));
+        localization = "Gliwice";
+        availableCars = bookAssistant.getCarsAvailableInTimePeriodAndLocalization(timePeriod, localization);
+        assertThat(availableCars.size()).isEqualTo(2);
+        assertThat(availableCars.get(0).getId()).isEqualTo("samochod-3-id");
+        assertThat(availableCars.get(1).getId()).isEqualTo("samochod-6-id");
+        
+        timePeriod = new TimePeriod(LocalDate.of(2022, 1, 22), LocalDate.of(2022, 1, 22));
+        localization = "Gliwice";
+        availableCars = bookAssistant.getCarsAvailableInTimePeriodAndLocalization(timePeriod, localization);
+        assertThat(availableCars.size()).isEqualTo(2);
+        assertThat(availableCars.get(0).getId()).isEqualTo("samochod-3-id");
+        assertThat(availableCars.get(1).getId()).isEqualTo("samochod-4-id");
+        
+        timePeriod = new TimePeriod(LocalDate.of(2022, 1, 22), LocalDate.of(2022, 1, 22));
+        localization = "Katowice";
+        availableCars = bookAssistant.getCarsAvailableInTimePeriodAndLocalization(timePeriod, localization);
+        assertThat(availableCars.size()).isEqualTo(1);
     }
     
 }
