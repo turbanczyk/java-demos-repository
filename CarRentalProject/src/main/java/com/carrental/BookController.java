@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -23,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author tomeku
  */
 @Controller
+@SessionAttributes("carOrder")
 public class BookController {
     
     private CarRepository carRepository;
@@ -35,7 +38,7 @@ public class BookController {
     }
     
     @PostMapping("/book")
-    public String bookPage(HttpServletRequest req, Model m) {
+    public String bookPage(HttpServletRequest req, Model model, @ModelAttribute OrderCar orderCar) {
         
         //take data
         String localization = req.getParameter("localization");
@@ -48,9 +51,18 @@ public class BookController {
         List<Car> carList = 
                 bookAssistant.getCarsAvailableInTimePeriodAndLocalization(bookTimePeriod, localization);
         
-        m.addAttribute("carList", carList);
+        //set data to session object
+        orderCar.setStartDate(rentStartDate);
+        orderCar.setEndDate(rentEndDate);
+        
+        model.addAttribute("carList", carList);
         
         return "book";
+    }
+    
+    @ModelAttribute("carOrder")
+    public OrderCar orderCar() {
+        return new OrderCar();
     }
     
     private LocalDate stringToLocalDate(String date) {

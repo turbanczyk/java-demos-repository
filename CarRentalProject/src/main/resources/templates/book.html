@@ -7,37 +7,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>TODO supply a title</title>
-        <!--<!--         <
+        <!--<!--         
             box-sizing: border-box;
         } -->
         <link rel="stylesheet" href="style.css">
-        <style>
-
-        .columnleft {
-        float: left;
-        width: 30%;
-        }
-        
-        .columnright {
-        float: left;
-        width: 70%;
-        }
-        
-        .columncar {
-        float: left;
-        width: 50%;
-        }
-
-        .row:after {
-        content: "";
-        display: table;
-        clear: both;
-        }
-        
-        table {
-        border : 1px;
-        }
-        </style>
     </head>
     <body>
  
@@ -94,7 +67,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <td>
                                     <p>Cena za 1 dzień</p>
                                     <h3 th:text="${car.pricePerDay} + ' zł'"></h3>
-                                    <p><input type="submit" th:attr="name=${car.Id}" value="Zamów" /></p>
+                                    <!--<p><input type="submit" th:attr="name=${car.Id}" value="Zamów" /></p>-->
+                                    <input type="hidden" name="carId" th:attr="value=${car.Id}"/>
+                                    <p><input type="submit" th:attr="value='Zamów ' + ${car.model}" /></p>
                                 </td>
                             </tr>
                         </tbody>

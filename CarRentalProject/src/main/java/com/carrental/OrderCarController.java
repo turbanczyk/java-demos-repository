@@ -4,10 +4,12 @@
  */
 package com.carrental;
 
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 /**
  *
@@ -17,8 +19,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class OrderCarController {
     
     @PostMapping("/order")
-    public String orderPage(Model model) {
+    public String orderPage(Model model, HttpServletRequest req, @ModelAttribute("carOrder") OrderCar orderCar) {
         
+        String carId = req.getParameter("carId");
+        //System.out.println(orderCar.getId());
+        System.out.println(carId);
         
         return "order";
     }

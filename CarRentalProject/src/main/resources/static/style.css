@@ -1,1 +1,24 @@
+.columnleft {
+    float: left;
+    width: 30%;
+}
+        
+.columnright {
+    float: left;
+    width: 70%;
+}
 
+.columncar {
+    float: left;
+    width: 50%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+table {
+    border : 1px;
+}
