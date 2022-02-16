@@ -44,13 +44,13 @@ public class BookControllerTest {
      */
     @Test
     @Disabled
-    public void testPage() {
+    public void testBookPage() {
         System.out.println("page");
         HttpServletRequest req = null;
         Model m = null;
         BookController instance = null;
         String expResult = "";
-        String result = instance.page(req, m);
+        String result = instance.bookPage(req, m);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

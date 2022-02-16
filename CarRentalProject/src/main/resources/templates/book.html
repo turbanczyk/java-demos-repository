@@ -3,13 +3,108 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--<!--         <
+            box-sizing: border-box;
+        } -->
+        <link rel="stylesheet" href="style.css">
+        <style>
+
+        .columnleft {
+        float: left;
+        width: 30%;
+        }
+        
+        .columnright {
+        float: left;
+        width: 70%;
+        }
+        
+        .columncar {
+        float: left;
+        width: 50%;
+        }
+
+        .row:after {
+        content: "";
+        display: table;
+        clear: both;
+        }
+        
+        table {
+        border : 1px;
+        }
+        </style>
     </head>
     <body>
-        <div>TODO write content</div>
+ 
+        <div class="row" th:if="${carList.size()} == 0">
+          <div class="columnleft">
+              <p></p>
+          </div>
+          <div class="columnright">
+            <h2>Brak dostępnych samochodów</h2>
+            <p>Przepraszamy, ale w wybranej lokalizacji i czasie nie mamy dostępnych samochodów.</p>
+            <p>Co mogę zrobić?</p>
+            <p>Możesz spróbować:</p>
+            <ul>
+                <li>Zmiana daty odbioru</li>
+                <li>Zmiana daty zwrotu</li>
+                <li>Wyszukiwanie samochodu w pobliskiej lokalizacji</li>
+            </ul>
+            <p></p>
+            <p><a href="home.html" th:href="@{/}">Powrót do strony wyszukiwania</a></p>
+          </div>
+        </div>
+        
+        <div class="row" th:if="${carList.size()} != 0">
+            <div class="columnleft">
+                <p></p>
+            </div>
+            <div class="columnright">
+                
+                <form action="#" th:action="@{/order}" th:object="${bookForm}" method="post">
+                <div th:each="car : ${carList}">
+                    <p></p>
+                    <table width="600">
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <h3 th:text="${car.brand} + ' ' + ${car.model}"></h3>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td><img th:src="@{/images/dan-gold-N7RiDzfF2iw-unsplash.jpg}" width="100" /></td>
+                                <td>
+                                    <div class="columncar">
+                                        <p th:text="'Liczba miejsc: ' + ${car.numberOfSeats}">Liczba miejsc: </p>
+                                        <p th:text="'Dzienny limit kilometrów: ' + ${car.dailyKilometerLimit}">Dzienny limit kilometrów: </p>
+                                    </div>
+                                    <div class="columncar">
+                                        <p th:text="'Skrzynia biegów: ' + ${car.gearboxType}"></p>
+                                        <p th:if="${car.airConditioning} == true">Klimatyzacja</p>
+                                        <p th:if="${car.airConditioning} == false"></p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p>Cena za 1 dzień</p>
+                                    <h3 th:text="${car.pricePerDay} + ' zł'"></h3>
+                                    <p><input type="submit" th:attr="name=${car.Id}" value="Zamów" /></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p></p>
+                </div>
+                </form>
+                
+            </div>
+        </div>
+
     </body>
 </html>

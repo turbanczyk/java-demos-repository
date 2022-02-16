@@ -35,7 +35,7 @@ public class BookController {
     }
     
     @PostMapping("/book")
-    public String page(HttpServletRequest req, Model m) {
+    public String bookPage(HttpServletRequest req, Model m) {
         
         //take data
         String localization = req.getParameter("localization");
@@ -47,6 +47,8 @@ public class BookController {
         BookAssistant bookAssistant = new BookAssistant(carRepository, carOrderRepository);
         List<Car> carList = 
                 bookAssistant.getCarsAvailableInTimePeriodAndLocalization(bookTimePeriod, localization);
+        
+        m.addAttribute("carList", carList);
         
         return "book";
     }
