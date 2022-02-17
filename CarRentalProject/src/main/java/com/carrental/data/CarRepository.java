@@ -12,7 +12,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- *
+ * CarRepository is the interface which allow application to proceed operation
+ * in database with cars.
+ * 
  * @author tomeku
  */
 @Repository

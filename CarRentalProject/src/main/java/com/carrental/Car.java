@@ -10,17 +10,20 @@ import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.AccessLevel;
-import lombok.Data;
 
 /**
- *
+ * Car is the class which allow an application to agregate information about
+ * single car.
+ * 
+ * A Car object encapsulate main information about car like id, model, brand,
+ * price per day, number of seats, gearbox type, air conditioning system,
+ * mileage, category and localization
+ * 
  * @author tomeku
  */
 
@@ -43,6 +46,22 @@ public class Car {
     private String category;
     private String localization;
     
+    /**
+     * Class constructor with parameters.
+     * @param model Parameter set car model name
+     * @param brand Parameter set car brand name
+     * @param pricePerDay Parameter set price for 1 day rental
+     * @param numberOfSeats Parameter set number of seats in car
+     * @param dailyKilometerLimit Parameter set daily kilometer limit for car
+     * @param gearboxType Parameter set gearbox type (permissible values: manualna,
+     * automatyczna
+     * @param airConditioning Paramter set information about air conditioning system
+     * (if system is available should be set true value)
+     * @param mileage Parameter set mileage
+     * @param category Parameter set category of car (permissible values: małe,
+     * średnie, duże, kombi, premium, minivany, SUV)
+     * @param localization Parameter set localization of car
+     */
     public Car(String model, String brand, double pricePerDay,
             int numberOfSeats, int dailyKilometerLimit, String gearboxType,
             boolean airConditioning, int mileage, String category,

@@ -5,20 +5,47 @@
 package com.carrental;
 
 import javax.servlet.http.HttpServletRequest;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Disabled;
-import org.springframework.ui.Model;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import static org.mockito.Mockito.when;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.web.servlet.MockMvc;
 
 /**
  *
  * @author tomeku
  */
+@SpringBootTest
+@ActiveProfiles("test")
+@AutoConfigureMockMvc
+@ExtendWith(MockitoExtension.class)
 public class BookControllerTest {
+    
+    @Autowired
+    private BookController controller;
+    
+    @Autowired
+    private MockMvc mockMvc;
+    
+    @Mock
+    HttpServletRequest request;
     
     public BookControllerTest() {
     }
@@ -39,21 +66,26 @@ public class BookControllerTest {
     public void tearDown() {
     }
 
+    @Test
+    public void contextLoads() throws Exception {
+        System.out.println("contextLoads");
+        assertThat(controller).isNotNull();
+    }
+    
     /**
      * Test of page method, of class BookController.
      */
     @Test
     @Disabled
-    public void testBookPage() {
-        System.out.println("page");
-        HttpServletRequest req = null;
-        Model m = null;
-        BookController instance = null;
-        String expResult = "";
-        //String result = instance.bookPage(req, m);
-        //assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+    public void testBookPage() throws Exception {
+        System.out.println("bookPage");
+        
+        when(request.getParameter("localization")).thenReturn("Rybnik");
+        when(request.getParameter("rentStart")).thenReturn("2022-02-22");
+        when(request.getParameter("rentEnd")).thenReturn("2022-02-25");
+        
+        //Problem with mockito, this part doesn't work. Test disabled on this moment
+        //this.mockMvc.perform(post("/book")).andDo(print());
     }
     
 }

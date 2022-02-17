@@ -4,26 +4,27 @@
  */
 package com.carrental;
 
+import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
 import java.time.LocalDate;
 import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import org.springframework.web.bind.annotation.ModelAttribute;
-
 /**
- *
+ * OrderCar is the class which allow application to agregate information about
+ * client order.
+ * 
+ * A OrderCar object encapsulate information aobut order like order id, user id,
+ * rental start date, rental end date, date of order.
+ * 
  * @author tomeku
  */
 @Getter
 @Setter
-//@NoArgsConstructor(access=AccessLevel.PRIVATE, force=true)
-//@NoArgsConstructor(access=AccessLevel.PUBLIC, force=true)
 @Entity
 public class OrderCar {
     
@@ -35,8 +36,31 @@ public class OrderCar {
     private LocalDate endDate;
     private LocalDate placedAt;
     
-    public OrderCar(String id, String userId, String carId, LocalDate startDate,
+    /**
+     * Constructor with parameters.
+     * @param userId Parameter set user id which ordered car
+     * @param carId Parameter set car id which is ordered
+     * @param startDate Parameter set start of rental period
+     * @param endDate Parameter set end of rental period
+     * @param placedAt Parameter set date of rental order
+     */
+    public OrderCar(String userId, String carId, LocalDate startDate,
             LocalDate endDate, LocalDate placedAt) {
+        
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(userId), 
+                "User ID can't be empty or null");
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(carId), 
+                "Car ID can't be empty or null");
+        Preconditions.checkArgument(startDate != null, 
+                "Start date can't be null");
+        Preconditions.checkArgument(endDate != null, 
+                "End date can't be null");
+        Preconditions.checkArgument(!startDate.isAfter(endDate), 
+                "Start date can't be after end date"); 
+        Preconditions.checkArgument(!endDate.isBefore(startDate), 
+                "End date can't be before start date");
+        Preconditions.checkArgument(placedAt != null, 
+                "Placed at can't be null");
         
         this.id = UUID.randomUUID().toString();
         this.userId = userId;
@@ -46,6 +70,9 @@ public class OrderCar {
         this.placedAt = placedAt;
     }
     
+    /**
+     * No parameters constructor.
+     */
     public OrderCar() {
         this.id = UUID.randomUUID().toString();
     }

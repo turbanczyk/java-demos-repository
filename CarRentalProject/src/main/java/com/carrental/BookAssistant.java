@@ -6,7 +6,6 @@ package com.carrental;
 
 import com.carrental.data.CarRepository;
 import com.carrental.data.CarOrderRepository;
-import java.time.LocalDate;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -15,26 +14,32 @@ import java.util.HashSet;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.AccessLevel;
 
-import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
+
 /**
- *
+ * BookAssistant is the class which allow an application to proceed with
+ * informations about availability of cars.
+ * 
+ * BookAssistant object is mainly responsible for process of finding available
+ * cars and other necesseary during this things.
+ * 
  * @author tomeku
  */
-       
+
 @Getter
 @Setter
 @NoArgsConstructor
-//@Service
 public class BookAssistant {
     
-    //@Autowired
     private CarRepository carRepository;
     private CarOrderRepository carOrderRepository;
     
+    /**
+     * Class constructor with two parameters.
+     * @param carRepository Object of class CarRepository
+     * @param carOrderRepository Object of class CarOrderRepository
+     */
     @Autowired
     public BookAssistant(CarRepository carRepository, 
             CarOrderRepository carOrderRepository) {
@@ -42,8 +47,13 @@ public class BookAssistant {
         this.carOrderRepository = carOrderRepository;
     }
     
-    //public BookAssistant() { }
-    
+    /**
+     * The method used to find that specified time period (checking time period)
+     * is out of another time period (basic time period)
+     * @param checkingPeriod Parameter of checking time period
+     * @param basicPeriod Parameter of basic time period
+     * @return 
+     */
     public boolean isTimePeriodOutOfTimePeriod(TimePeriod checkingPeriod, TimePeriod basicPeriod) {
         boolean i = false;
 
@@ -60,6 +70,15 @@ public class BookAssistant {
         return i;
     }
     
+    /**
+     * The method is used to find cars (object of class Car) which are available
+     * in specified time period and in specified localization
+     * @param timePeriod Parameter determines time period in which car should
+     * be available
+     * @param localization Parameter determines location in which car should be
+     * available
+     * @return Return list of cars (list of objects Car)
+     */
     public List<Car> getCarsAvailableInTimePeriodAndLocalization(TimePeriod timePeriod, 
             String localization) {
         

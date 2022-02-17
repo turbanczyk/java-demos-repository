@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 /**
- *
+ * OrderCarController is controller responsible for correct order car process.
+ * 
  * @author tomeku
  */
 @Controller
@@ -21,9 +22,9 @@ public class OrderCarController {
     @PostMapping("/order")
     public String orderPage(Model model, HttpServletRequest req, @ModelAttribute("carOrder") OrderCar orderCar) {
         
+        //set car id
         String carId = req.getParameter("carId");
-        //System.out.println(orderCar.getId());
-        System.out.println(carId);
+        orderCar.setCarId(carId);
         
         return "order";
     }

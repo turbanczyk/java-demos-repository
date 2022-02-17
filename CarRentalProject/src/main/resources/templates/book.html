@@ -39,8 +39,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             </div>
             <div class="columnright">
                 
-                <form action="#" th:action="@{/order}" th:object="${bookForm}" method="post">
+                
                 <div th:each="car : ${carList}">
+                    <form action="#" th:action="@{/order}" th:object="${bookForm}" method="post">
                     <p></p>
                     <table width="600">
                         <tbody>
@@ -67,7 +68,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <td>
                                     <p>Cena za 1 dzień</p>
                                     <h3 th:text="${car.pricePerDay} + ' zł'"></h3>
-                                    <!--<p><input type="submit" th:attr="name=${car.Id}" value="Zamów" /></p>-->
                                     <input type="hidden" name="carId" th:attr="value=${car.Id}"/>
                                     <p><input type="submit" th:attr="value='Zamów ' + ${car.model}" /></p>
                                 </td>
@@ -75,8 +75,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </tbody>
                     </table>
                     <p></p>
+                    </form>
                 </div>
-                </form>
+               
                 
             </div>
         </div>

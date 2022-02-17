@@ -12,7 +12,9 @@ import com.carrental.OrderCar;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- *
+ * CarOrderRepository is the interface which allow application to proceed operation
+ * in database with orders.
+ * 
  * @author tomeku
  */
 public interface CarOrderRepository extends CrudRepository<OrderCar, String> {

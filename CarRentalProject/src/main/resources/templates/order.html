@@ -3,13 +3,105 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <div>TODO write content</div>
+        <div class="row">
+          <div class="columnleft">
+              <p></p>
+          </div>
+          <div class="columnright">
+              <div>
+                  <h3>Złóż zamówienie za pomocą swojego konta</h3>
+                  <form action="#" th:action="@{/orderconfirmation}" method="post">
+                      <table width="600">
+                          <tbody>
+                              <tr>
+                                  <td>E-mail: </td>
+                                  <td><input type="text" name="userEmail" /></td>
+                              </tr>
+                              <tr>
+                                  <td>Hasło: </td>
+                                  <td><input type="password" name="userPassword" /></td>
+                              </tr>
+                              <tr>
+                                  <td></td>
+                                  <td><input type="submit" value="Złóż zamówienie"/></td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </form>
+              </div>
+              
+              <div>
+                  <p></p>
+                  <h3>Jeżeli nie posiadasz konta to wprowadź swoje dane:</h3>
+                  <p></p>
+              </div>
+              
+              <form action="#" th:action="@{/orderconfirmation}" method="post">
+                      <table width="600">
+                          <tbody>
+                              <tr>
+                                  <td>Imię: </td>
+                                  <td><input type="text" name="name" /></td>
+                              </tr>
+                              <tr>
+                                  <td>Nazwisko: </td>
+                                  <td><input type="text" name="surname" /></td>
+                              </tr>
+                              <tr>
+                                  <td>Kraj: </td>
+                                  <td><input type="text" name="country" /></td>
+                              </tr>
+                              <tr>
+                                  <td>Miasto: </td>
+                                  <td><input type="text" name="city" /></td>
+                              </tr>
+                              <tr>
+                                  <td>Ulica: </td>
+                                  <td><input type="text" name="street" /></td>
+                              </tr>
+                              <tr>
+                                  <td>Numer domu: </td>
+                                  <td><input type="text" name="streetNumber" /></td>
+                              </tr>
+                              <tr>
+                                  <td>Numer prawa jazdy: </td>
+                                  <td><input type="text" name="drivingLicenseNumber" /></td>
+                              </tr>
+                              <tr>
+                                  <td>Adres e-mail: </td>
+                                  <td><input type="text" name="email" /></td>
+                              </tr>
+                              <tr>
+                                  <td>Numer telefonu: </td>
+                                  <td><input type="text" name="telephoneNumber" /></td>
+                              </tr>
+                              <tr>
+                                  <td>Numer karty kredytowej: </td>
+                                  <td><input type="text" name="creditCardNumber" /></td>
+                              </tr>
+                              <tr>
+                                  <td>Data ważności karty kredytowej: </td>
+                                  <td><input type="text" name="creditCardExpirationDate" /></td>
+                              </tr>
+                              <tr>
+                                  <td>Numer CVV: </td>
+                                  <td><input type="text" name="creditCardCVVNumber" /></td>
+                              </tr>
+                              <tr>
+                                  <td></td>
+                                  <td><input type="submit" value="Złóż zamówienie"/></td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </form>
+          </div>
+        </div>
     </body>
 </html>

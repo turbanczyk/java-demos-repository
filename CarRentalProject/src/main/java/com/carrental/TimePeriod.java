@@ -6,15 +6,15 @@ package com.carrental;
 
 import com.google.common.base.Preconditions;
 
-import java.util.Date;
-
 import java.time.LocalDate;
 
 import lombok.Getter;
 import lombok.Setter;
         
 /**
- *
+ * TimePeriod is the class which allow an application to agregate information
+ * about time period (start date, end date).
+ * 
  * @author tomeku
  */
 @Getter
@@ -24,15 +24,18 @@ public class TimePeriod {
     private LocalDate startDate;
     private LocalDate endDate;
     
+    /**
+     * Constructor with two parameters.
+     * @param startDate Parameter set start date of time period
+     * @param endDate Parameter set end date of time period
+     */
     public TimePeriod(LocalDate startDate, LocalDate endDate) {
         Preconditions.checkArgument(startDate != null, 
                 "Start date can't be null");
         Preconditions.checkArgument(endDate != null, 
                 "End date can't be null");
-        //Preconditions.checkArgument(startDate.after(endDate), 
         Preconditions.checkArgument(!startDate.isAfter(endDate), 
                 "Start date can't be after end date");
-        //Preconditions.checkArgument(endDate.before(startDate), 
         Preconditions.checkArgument(!endDate.isBefore(startDate), 
                 "End date can't be before start date");
         this.startDate = startDate;

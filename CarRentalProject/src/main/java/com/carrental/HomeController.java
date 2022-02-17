@@ -4,8 +4,6 @@
  */
 package com.carrental;
 
-import com.carrental.data.CarRepository;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -22,7 +20,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- *
+ * HomeController is controller responsible for present home page of application.
+ * 
  * @author tomeku
  */
 @Controller

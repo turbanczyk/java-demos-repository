@@ -6,9 +6,9 @@ package com.carrental;
 
 import com.carrental.data.CarRepository;
 import com.carrental.data.CarOrderRepository;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -21,7 +21,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- *
+ * BookController is controller responsible for correct car search operation.
+ * 
  * @author tomeku
  */
 @Controller
@@ -56,10 +57,14 @@ public class BookController {
         orderCar.setEndDate(rentEndDate);
         
         model.addAttribute("carList", carList);
-        
+ 
         return "book";
     }
     
+    /**
+     * Method necessary for propoper injection of session attribute
+     * @return Return object of class OrderCar
+     */
     @ModelAttribute("carOrder")
     public OrderCar orderCar() {
         return new OrderCar();
