@@ -88,6 +88,10 @@
                     <scope>runtime</scope>
                 </dependency>
                 <!--h2 database-->
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-security</artifactId>
+                </dependency>
             </dependencies>
 	<build>
 		<plugins>

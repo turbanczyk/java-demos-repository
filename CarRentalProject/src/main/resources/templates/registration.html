@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Car Rental Service, rejestracja użytkownika</title>
+  </head>
+  <body>
+    <h1>Rejestrowanie</h1>
+    <form method="POST" th:action="@{/register}" id="registerForm">
+        <label for="username">Nazwa użytkownika: </label>
+        <input type="text" name="username"/><br/>
+        
+        <label for="password">Hasło: </label>
+        <input type="password" name="password"/><br/>
+       
+        <label for="confirm">Potwierdź hasło: </label>
+        <input type="password" name="confirm"/><br/>
+       
+        <label for="name">Imię: </label>
+        <input type="text" name="name"/><br/>
+        
+        <label for="surname">Nazwisko: </label>
+        <input type="text" name="surname"/><br/>
+        
+        <label for="country">Kraj: </label>
+        <input type="text" name="country"/><br/>
+        
+        <label for="city">Miejscowość: </label>
+        <input type="text" name="city"/><br/>
+ 
+        <label for="street">Ulica: </label>
+        <input type="text" name="street"/><br/>
+        
+        <label for="drivingLicenseNumber">Numer prawa jazdy: </label>
+        <input type="text" name="drivingLicenseNumber"/><br/>
+        
+        <label for="email">Email: </label>
+        <input type="text" name="email"/><br/>
+        
+        <label for="telephoneNumber">Telefon: </label>
+        <input type="text" name="telephoneNumber"/><br/>
+        
+        <input type="submit" value="Zarejestruj"/>
+    </form>
+  </body>
+</html>

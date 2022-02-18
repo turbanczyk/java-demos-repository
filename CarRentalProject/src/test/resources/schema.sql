@@ -22,17 +22,22 @@ create table if not exists Car (
 );
 
 create table if not exists User (
-    id varchar(100) not null,
+    id long not null,
+    username varchar(100) not null,
+    password varchar(100) not null,
+    /*
+    enabled boolean not null,
+    authority varchar(100) not null,
+    */
     name varchar(50) not null,
     surname varchar(50) not null,
     country varchar(50) not null,
     city varchar(50) not null,
     street varchar(50) not null,
-    street_number varchar(50) not null,
     driving_license_number varchar(50) not null,
     email varchar(50) not null,
-    telephone_number varchar(50) not null,
-    credit_card_id varchar(100) not null
+    telephone_number varchar(50) not null
+    /*credit_card_id varchar(100) not null*/
 );
 
 create table if not exists Order_Car (
