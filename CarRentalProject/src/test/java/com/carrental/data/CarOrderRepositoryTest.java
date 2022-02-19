@@ -61,15 +61,15 @@ public class CarOrderRepositoryTest {
         assertThat(carOrder.size()).isEqualTo(6);
         
         
-        assertThat(carOrder.get(0).getId()).isEqualTo("zamowienie-6-id");
-        assertThat(carOrder.get(0).getUserId()).isEqualTo("user-2-id");
+        assertThat(carOrder.get(0).getId()).isEqualTo(6);
+        assertThat(carOrder.get(0).getUserId()).isEqualTo(2);
         assertThat(carOrder.get(0).getCarId()).isEqualTo("samochod-1-id");
         assertThat(carOrder.get(0).getStartDate()).isEqualTo(LocalDate.of(2022, 1, 23));
         assertThat(carOrder.get(0).getEndDate()).isEqualTo(LocalDate.of(2022, 1, 24));
         assertThat(carOrder.get(0).getPlacedAt()).isEqualTo(LocalDate.of(2022, 1, 15));
         
-        assertThat(carOrder.get(1).getId()).isEqualTo("zamowienie-7-id");
-        assertThat(carOrder.get(1).getUserId()).isEqualTo("user-2-id");
+        assertThat(carOrder.get(1).getId()).isEqualTo(7);
+        assertThat(carOrder.get(1).getUserId()).isEqualTo(2);
         assertThat(carOrder.get(1).getCarId()).isEqualTo("samochod-8-id");
         assertThat(carOrder.get(1).getStartDate()).isEqualTo(LocalDate.of(2022, 1, 23));
         assertThat(carOrder.get(1).getEndDate()).isEqualTo(LocalDate.of(2022, 1, 27));
@@ -85,15 +85,15 @@ public class CarOrderRepositoryTest {
         List<OrderCar> carOrder = carOrderRepository.findAll();
         assertThat(carOrder.size()).isEqualTo(11);
         
-        assertThat(carOrder.get(5).getId()).isEqualTo("zamowienie-6-id");
-        assertThat(carOrder.get(5).getUserId()).isEqualTo("user-2-id");
+        assertThat(carOrder.get(5).getId()).isEqualTo(6);
+        assertThat(carOrder.get(5).getUserId()).isEqualTo(2);
         assertThat(carOrder.get(5).getCarId()).isEqualTo("samochod-1-id");
         assertThat(carOrder.get(5).getStartDate()).isEqualTo(LocalDate.of(2022, 1, 23));
         assertThat(carOrder.get(5).getEndDate()).isEqualTo(LocalDate.of(2022, 1, 24));
         assertThat(carOrder.get(5).getPlacedAt()).isEqualTo(LocalDate.of(2022, 1, 15));
         
-        assertThat(carOrder.get(6).getId()).isEqualTo("zamowienie-7-id");
-        assertThat(carOrder.get(6).getUserId()).isEqualTo("user-2-id");
+        assertThat(carOrder.get(6).getId()).isEqualTo(7);
+        assertThat(carOrder.get(6).getUserId()).isEqualTo(2);
         assertThat(carOrder.get(6).getCarId()).isEqualTo("samochod-8-id");
         assertThat(carOrder.get(6).getStartDate()).isEqualTo(LocalDate.of(2022, 1, 23));
         assertThat(carOrder.get(6).getEndDate()).isEqualTo(LocalDate.of(2022, 1, 27));

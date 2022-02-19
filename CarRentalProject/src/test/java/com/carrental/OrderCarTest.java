@@ -25,8 +25,8 @@ public class OrderCarTest {
     OrderCar orderCar;
             
     public OrderCarTest() {
-        orderCar = new OrderCar("384050", "123456", LocalDate.of(2022, 2, 17),
-                LocalDate.of(2022, 2, 19), LocalDate.of(2022, 2, 15));
+        orderCar = new OrderCar("123456", LocalDate.of(2022, 2, 17),
+                LocalDate.of(2022, 2, 19), LocalDate.of(2022, 2, 15), 432);
     }
     
     @BeforeAll
@@ -49,57 +49,66 @@ public class OrderCarTest {
     public void testConstructor() {
         System.out.println("testConstructor");
         
+        /*
         //User ID can't be empty or null
         Exception thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
            OrderCar testOrder = new OrderCar(null, "123456", LocalDate.of(2022, 2, 17),
-                LocalDate.of(2022, 2, 19), LocalDate.of(2022, 2, 15));
+                LocalDate.of(2022, 2, 19), LocalDate.of(2022, 2, 15), 432);
         });
         
         thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
            OrderCar testOrder = new OrderCar("", "123456", LocalDate.of(2022, 2, 17),
-                LocalDate.of(2022, 2, 19), LocalDate.of(2022, 2, 15));
+                LocalDate.of(2022, 2, 19), LocalDate.of(2022, 2, 15), 432);
         });
+        */
         
         //Car ID can't be empty or null
-        thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-           OrderCar testOrder = new OrderCar("12345", "", LocalDate.of(2022, 2, 17),
-                LocalDate.of(2022, 2, 19), LocalDate.of(2022, 2, 15));
+        Exception thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+           OrderCar testOrder = new OrderCar("", LocalDate.of(2022, 2, 17),
+                LocalDate.of(2022, 2, 19), LocalDate.of(2022, 2, 15), 432);
         });
  
         thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-           OrderCar testOrder = new OrderCar("12345", null, LocalDate.of(2022, 2, 17),
-                LocalDate.of(2022, 2, 19), LocalDate.of(2022, 2, 15));
+           OrderCar testOrder = new OrderCar(null, LocalDate.of(2022, 2, 17),
+                LocalDate.of(2022, 2, 19), LocalDate.of(2022, 2, 15), 432);
         });
         
         //Start date can't be null
         thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-           OrderCar testOrder = new OrderCar("12345", "3456", null,
-                LocalDate.of(2022, 2, 19), LocalDate.of(2022, 2, 15));
+           OrderCar testOrder = new OrderCar("3456", null,
+                LocalDate.of(2022, 2, 19), LocalDate.of(2022, 2, 15), 432);
         });
         
         //End date can't be null
         thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-           OrderCar testOrder = new OrderCar("12345", "3456", LocalDate.of(2022, 2, 17),
-                null, LocalDate.of(2022, 2, 15));
+           OrderCar testOrder = new OrderCar("3456", LocalDate.of(2022, 2, 17),
+                null, LocalDate.of(2022, 2, 15), 432);
         });
         
         //Start date can't be after end date
         thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-           OrderCar testOrder = new OrderCar("12345", "35678", LocalDate.of(2022, 2, 20),
-                LocalDate.of(2022, 2, 19), LocalDate.of(2022, 2, 15));
+           OrderCar testOrder = new OrderCar("35678", LocalDate.of(2022, 2, 20),
+                LocalDate.of(2022, 2, 19), LocalDate.of(2022, 2, 15), 432);
         });
         
         //End date can't be before start date
         thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-           OrderCar testOrder = new OrderCar("12345", "3456677", LocalDate.of(2022, 2, 17),
-                LocalDate.of(2022, 2, 16), LocalDate.of(2022, 2, 15));
+           OrderCar testOrder = new OrderCar("3456677", LocalDate.of(2022, 2, 17),
+                LocalDate.of(2022, 2, 16), LocalDate.of(2022, 2, 15), 432);
         });
         
         //Placed at can't be null
         thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-           OrderCar testOrder = new OrderCar("12345", "334656", LocalDate.of(2022, 2, 17),
-                LocalDate.of(2022, 2, 19), null);
+           OrderCar testOrder = new OrderCar("334656", LocalDate.of(2022, 2, 17),
+                LocalDate.of(2022, 2, 19), null, 432);
         });
+        
+        //Total price must be bigger than 0
+        thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+           OrderCar testOrder = new OrderCar("334656", LocalDate.of(2022, 2, 17),
+                LocalDate.of(2022, 2, 19), LocalDate.of(2022, 2, 15), -1);
+        });
+        
     }
     
     /**
@@ -109,7 +118,7 @@ public class OrderCarTest {
     public void testGetId() {
         System.out.println("getId");
         
-        assertThat(orderCar.getId()).isNotEmpty();
+        //assertThat(orderCar.getId()).isNotEmpty();
         assertThat(orderCar.getId()).isNotNull();
     }
 
@@ -120,7 +129,7 @@ public class OrderCarTest {
     public void testGetUserId() {
         System.out.println("getUserId");
         
-        assertThat(orderCar.getUserId()).isEqualTo("384050");
+        //assertThat(orderCar.getUserId()).isEqualTo(384050);
     }
 
     /**
@@ -170,8 +179,8 @@ public class OrderCarTest {
     public void testSetId() {
         System.out.println("setId");
         
-        orderCar.setId("384050");
-        assertThat(orderCar.getId()).isEqualTo("384050");
+        orderCar.setId(384050);
+        assertThat(orderCar.getId()).isEqualTo(384050);
     }
 
     /**
@@ -181,8 +190,8 @@ public class OrderCarTest {
     public void testSetUserId() {
         System.out.println("setUserId");
         
-        orderCar.setUserId("384050");
-        assertThat(orderCar.getUserId()).isEqualTo("384050");
+        orderCar.setUserId(384050);
+        assertThat(orderCar.getUserId()).isEqualTo(384050);
     }
 
     /**

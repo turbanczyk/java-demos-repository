@@ -32,12 +32,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class User implements UserDetails {
     
     private static final long serialVersionUID = 1L;
-    @Id
+    @javax.persistence.Id
+    @org.springframework.data.annotation.Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private final String username;
     private final String password;
-    private final String name;
+    //private boolean enabled;
+    private final String firstName;
     private final String surname;
     private final String country;
     private final String city;

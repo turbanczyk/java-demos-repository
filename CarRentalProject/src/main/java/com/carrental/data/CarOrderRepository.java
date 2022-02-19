@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import com.carrental.OrderCar;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * CarOrderRepository is the interface which allow application to proceed operation
@@ -17,6 +18,7 @@ import org.springframework.data.repository.CrudRepository;
  * 
  * @author tomeku
  */
+@Repository
 public interface CarOrderRepository extends CrudRepository<OrderCar, String> {
     List<OrderCar> findByStartDateIsAfter(LocalDate date);
     List<OrderCar> findAll();

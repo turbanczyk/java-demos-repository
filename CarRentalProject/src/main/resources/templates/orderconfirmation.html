@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Car Rental Service, status zamówienia</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+ 
+        <div th:if="${isOrdered} == true">
+            <h3>Dziękujemy, Twoje rezerwacja zakończyła się sukcesem.</h3>
+            <p></p>
+            <p><a th:href="@{/}">Powrót do strony głównej</a></p>
+        </div>
+        
+        <div th:if="${isOrdered} == false">
+            <h3>Wystąpił błąd, niestety nie udało się zarezerwować pojazdu.</h3>
+            <p></p>
+            <p><a th:href="@{/}">Powrót do strony głównej</a></p>
+        </div>
+        
+    </body>
+</html>

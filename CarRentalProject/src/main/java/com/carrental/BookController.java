@@ -29,8 +29,11 @@ import javax.servlet.http.HttpServletRequest;
 @SessionAttributes("carOrder")
 public class BookController {
     
+    //@Autowired
     private CarRepository carRepository;
+    //@Autowired
     private CarOrderRepository carOrderRepository;
+    
     
     @Autowired
     public BookController(CarRepository carRepository, CarOrderRepository carOrderRepository) {
@@ -39,7 +42,7 @@ public class BookController {
     }
     
     @PostMapping("/book")
-    public String bookPage(HttpServletRequest req, Model model, @ModelAttribute OrderCar orderCar) {
+    public String bookPage(HttpServletRequest req, Model model, @ModelAttribute("carOrder") OrderCar orderCar) {
         
         //take data
         String localization = req.getParameter("localization");

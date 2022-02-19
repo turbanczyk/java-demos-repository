@@ -6,102 +6,32 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
-        <link rel="stylesheet" href="style.css">
+        <title>Car Rental Service, podsumowanie zamówienia</title>
+        <link rel="stylesheet" href="style.css" />
     </head>
     <body>
         <div class="row">
+            
           <div class="columnleft">
               <p></p>
           </div>
+            
           <div class="columnright">
-              <div>
-                  <h3>Złóż zamówienie za pomocą swojego konta</h3>
-                  <form action="#" th:action="@{/orderconfirmation}" method="post">
-                      <table width="600">
-                          <tbody>
-                              <tr>
-                                  <td>E-mail: </td>
-                                  <td><input type="text" name="userEmail" /></td>
-                              </tr>
-                              <tr>
-                                  <td>Hasło: </td>
-                                  <td><input type="password" name="userPassword" /></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td><input type="submit" value="Złóż zamówienie"/></td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </form>
-              </div>
-              
-              <div>
-                  <p></p>
-                  <h3>Jeżeli nie posiadasz konta to wprowadź swoje dane:</h3>
-                  <p></p>
-              </div>
-              
-              <form action="#" th:action="@{/orderconfirmation}" method="post">
-                      <table width="600">
-                          <tbody>
-                              <tr>
-                                  <td>Imię: </td>
-                                  <td><input type="text" name="name" /></td>
-                              </tr>
-                              <tr>
-                                  <td>Nazwisko: </td>
-                                  <td><input type="text" name="surname" /></td>
-                              </tr>
-                              <tr>
-                                  <td>Kraj: </td>
-                                  <td><input type="text" name="country" /></td>
-                              </tr>
-                              <tr>
-                                  <td>Miasto: </td>
-                                  <td><input type="text" name="city" /></td>
-                              </tr>
-                              <tr>
-                                  <td>Ulica: </td>
-                                  <td><input type="text" name="street" /></td>
-                              </tr>
-                              <tr>
-                                  <td>Numer domu: </td>
-                                  <td><input type="text" name="streetNumber" /></td>
-                              </tr>
-                              <tr>
-                                  <td>Numer prawa jazdy: </td>
-                                  <td><input type="text" name="drivingLicenseNumber" /></td>
-                              </tr>
-                              <tr>
-                                  <td>Adres e-mail: </td>
-                                  <td><input type="text" name="email" /></td>
-                              </tr>
-                              <tr>
-                                  <td>Numer telefonu: </td>
-                                  <td><input type="text" name="telephoneNumber" /></td>
-                              </tr>
-                              <tr>
-                                  <td>Numer karty kredytowej: </td>
-                                  <td><input type="text" name="creditCardNumber" /></td>
-                              </tr>
-                              <tr>
-                                  <td>Data ważności karty kredytowej: </td>
-                                  <td><input type="text" name="creditCardExpirationDate" /></td>
-                              </tr>
-                              <tr>
-                                  <td>Numer CVV: </td>
-                                  <td><input type="text" name="creditCardCVVNumber" /></td>
-                              </tr>
-                              <tr>
-                                  <td></td>
-                                  <td><input type="submit" value="Złóż zamówienie"/></td>
-                              </tr>
-                          </tbody>
-                      </table>
-                  </form>
+              <h3>Podsumowanie Twojego zamówienia: </h3>
+              <p th:text="${car.brand} + ' ' + ${car.model}"></p>
+                <ul>
+                    <li th:text="'Liczba miejsc: ' + ${car.numberOfSeats}"></li>
+                    <li th:text="'Dzienny limit kilometrów: ' + ${car.dailyKilometerLimit}">Zmiana daty zwrotu</li>
+                    <li th:text="'Skrzynia biegów: ' + ${car.gearboxType}"></li>
+                    <li <p th:if="${car.airConditioning} == true">Klimatyzacja</li>
+                </ul>
+              <p th:text="'Data rozpoczęcia rezerwacji: ' + ${order.startDate}"></p>
+              <p th:text="'Data zakończenia rezerwacji: ' + ${order.endDate}"></p>
+              <p th:text="'Miejsce odbioru i zwrotu samochodu: ' + ${car.localization}"></p>
+              <h3 th:text="'Cena całkowita: ' + ${order.totalPrice} + ' zł'"></h3>
+              <h3><a th:href="@{/orderconfirmation}">Zamów</a></h3>
           </div>
+            
         </div>
     </body>
 </html>

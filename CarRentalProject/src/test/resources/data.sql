@@ -28,25 +28,25 @@ insert into Car values ('samochod-8-id', 'Opel', 'Astra',
 
 
 delete from Order_Car;
-insert into Order_Car values ('zamowienie-1-id', 'user-1-id', 
-    'samochod-2-id', '2022-01-19', '2022-01-21', '2022-01-15');
-insert into Order_Car values ('zamowienie-2-id', 'user-1-id', 
-    'samochod-5-id', '2022-01-19', '2022-01-22', '2022-01-15');
-insert into Order_Car values ('zamowienie-3-id', 'user-2-id', 
-    'samochod-6-id', '2022-01-19', '2022-01-23', '2022-01-15');
-insert into Order_Car values ('zamowienie-4-id', 'user-2-id', 
-    'samochod-2-id', '2022-01-22', '2022-01-24', '2022-01-15');
-insert into Order_Car values ('zamowienie-5-id', 'user-2-id', 
-    'samochod-7-id', '2022-01-22', '2022-01-25', '2022-01-15');
-insert into Order_Car values ('zamowienie-6-id', 'user-2-id', 
-    'samochod-1-id', '2022-01-23', '2022-01-24', '2022-01-15');
-insert into Order_Car values ('zamowienie-7-id', 'user-2-id', 
-    'samochod-8-id', '2022-01-23', '2022-01-27', '2022-01-15');
-insert into Order_Car values ('zamowienie-8-id', 'user-2-id', 
-    'samochod-1-id', '2022-01-25', '2022-01-27', '2022-01-15');
-insert into Order_Car values ('zamowienie-9-id', 'user-2-id', 
-    'samochod-3-id', '2022-01-26', '2022-01-27', '2022-01-15');
-insert into Order_Car values ('zamowienie-10-id', 'user-2-id', 
-    'samochod-4-id', '2022-01-29', '2022-01-30', '2022-01-15');
-insert into Order_Car values ('zamowienie-11-id', 'user-2-id', 
-    'samochod-4-id', '2022-01-23', '2022-01-24', '2022-01-15');
+insert into Order_Car values ('1', '1', 
+    'samochod-2-id', '2022-01-19', '2022-01-21', '2022-01-15', '432');
+insert into Order_Car values ('2', '1', 
+    'samochod-5-id', '2022-01-19', '2022-01-22', '2022-01-15', '432');
+insert into Order_Car values ('3', '2', 
+    'samochod-6-id', '2022-01-19', '2022-01-23', '2022-01-15', '432');
+insert into Order_Car values ('4', '2', 
+    'samochod-2-id', '2022-01-22', '2022-01-24', '2022-01-15', '432');
+insert into Order_Car values ('5', '2', 
+    'samochod-7-id', '2022-01-22', '2022-01-25', '2022-01-15', '432');
+insert into Order_Car values ('6', '2', 
+    'samochod-1-id', '2022-01-23', '2022-01-24', '2022-01-15', '432');
+insert into Order_Car values ('7', '2', 
+    'samochod-8-id', '2022-01-23', '2022-01-27', '2022-01-15', '432');
+insert into Order_Car values ('8', '2', 
+    'samochod-1-id', '2022-01-25', '2022-01-27', '2022-01-15', '432');
+insert into Order_Car values ('9', '2', 
+    'samochod-3-id', '2022-01-26', '2022-01-27', '2022-01-15', '432');
+insert into Order_Car values ('10', '2', 
+    'samochod-4-id', '2022-01-29', '2022-01-30', '2022-01-15', '432');
+insert into Order_Car values ('11', '2', 
+    'samochod-4-id', '2022-01-23', '2022-01-24', '2022-01-15', '432');

@@ -33,7 +33,9 @@ import lombok.AccessLevel;
 @Entity
 public class Car {
     
-    @Id
+    //@Id
+    @javax.persistence.Id
+    @org.springframework.data.annotation.Id
     private String id;
     private String model;
     private String brand;

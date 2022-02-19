@@ -7,6 +7,7 @@ package com.carrental.data;
 import com.carrental.User;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 /**
  * UserRepository is the interface which allow application to proceed operation
@@ -16,6 +17,7 @@ import org.springframework.data.repository.CrudRepository;
  * 
  * @author tomeku
  */
+@Repository
 public interface UserRepository extends CrudRepository<User, Long> {
     User findByUsername(String username);
 }
