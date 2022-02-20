@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Car Rental Service, Twoje zamówienia</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        
+        <div class="row" th:if="${userOrders.size()} == 0">
+          <div class="columnleft">
+              <p></p>
+          </div>
+          <div class="columnright">
+            <h2>Twoja lista jest pusta, nie masz obecnie żadnych aktualnych ani historcznych zamówień.</h2>
+            <p></p>
+            <p><a href="home.html" th:href="@{/}">Powrót do strony wyszukiwania</a></p>
+          </div>
+        </div>
+        
+        
+        
+        <div class="row" th:if="${userOrders.size()} > 0">
+            
+          <div class="columnleft">
+              <p></p>
+          </div>
+            
+          <div class="columnright">
+              <h3>Twoje zamówienia: </h3>
+              
+              <div>
+                  
+                  <table border="1">
+                      <tbody>
+                          <tr>
+                              <td><b>Numer zamówienia</b></td>
+                              <td><b>Data dokonania zamówienia</b></td>
+                              <td><b>Data rozpoczęcia rezerwacji</b></td>
+                              <td><b>Data zakończenia rezerwacji</b></td>
+                              <td><b>Cena</b></td>
+                              <td><b>Samochód</b></td>
+                          </tr>
+                          <tr th:each="order, iterStat : ${userOrders}">
+                              <td th:text="${order.id}"></td>
+                              <td th:text="${order.placedAt}"></td>
+                              <td th:text="${order.startDate}"></td>
+                              <td th:text="${order.endDate}"></td>
+                              <td th:text="${order.totalPrice}"></td>
+                              <td th:text="${carList[iterStat.index].brand} + ' ' + 
+                                  ${carList[iterStat.index].model}"></td>
+                          </tr>
+                      </tbody>
+                  </table>
+                  
+                  <p></p>
+                  <p></p>
+                  <p><a href="home.html" th:href="@{/}">Powrót do strony wyszukiwania</a></p>
+  
+              </div>
+              
+              
+          </div>
+            
+        </div>
+    </body>
+</html>

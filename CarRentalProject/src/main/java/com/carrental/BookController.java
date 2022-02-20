@@ -58,8 +58,6 @@ public class BookController {
             //set data to session object
             orderCar.setStartDate(rentStartDate);
             orderCar.setEndDate(rentEndDate);
-            
-            //model.addAttribute("carList", carList);
         }
         //search with custom filters
         else {
@@ -81,24 +79,10 @@ public class BookController {
             model.addAttribute("filterCarByPriceMax", 0);
         }
         
-        
         model.addAttribute("carList", carList);
  
         return "book";
     }
-    
-    /*
-    @GetMapping("/book")
-    public String bookPageAfterFilters(Model model, @ModelAttribute("carOrder") OrderCar orderCar) {
-        
-        
-        //sortowanie car lists
-        System.out.println(carList.size());
-        
-        model.addAttribute("carList", carList);
- 
-        return "book";
-    }*/
     
     /**
      * Method necessary for propoper injection of session attribute

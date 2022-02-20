@@ -7,16 +7,13 @@ package com.carrental;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import java.time.LocalDate;
-import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.Data;
 
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * OrderCar is the class which allow application to agregate information about
@@ -27,20 +24,15 @@ import lombok.Setter;
  * 
  * @author tomeku
  */
-//@Getter
-//@Setter
+
 @Data
 @NoArgsConstructor
 @Entity
 public class OrderCar {
     
-    //private static final long serialVersionUID = 1L;
-    //@Id
     @javax.persistence.Id
     @org.springframework.data.annotation.Id
-    //@GeneratedValue(strategy=GenerationType.AUTO)
-    //@GeneratedValue(strategy=GenerationType.AUTO)
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
     private long userId;
     private String carId;
@@ -85,12 +77,5 @@ public class OrderCar {
         this.placedAt = placedAt;
         this.totalPrice = totalPrice;
     }
-    
-    /**
-     * No parameters constructor.
-     */
-    //public OrderCar() {
-        //this.id = UUID.randomUUID().toString();
-    //}
 
 }

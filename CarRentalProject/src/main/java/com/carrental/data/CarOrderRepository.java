@@ -22,4 +22,5 @@ import org.springframework.stereotype.Repository;
 public interface CarOrderRepository extends CrudRepository<OrderCar, String> {
     List<OrderCar> findByStartDateIsAfter(LocalDate date);
     List<OrderCar> findAll();
+    List<OrderCar> findByUserId(double userId);
 }

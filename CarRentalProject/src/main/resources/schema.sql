@@ -46,7 +46,8 @@ create table if not exists Order_Car (
     start_date date not null,
     end_date date not null,
     placed_at date not null,
-    total_price real not null
+    total_price real not null,
+    primary key(id)
 );
 
 create table if not exists CreditCard (
