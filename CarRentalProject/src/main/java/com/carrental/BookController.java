@@ -29,11 +29,9 @@ import javax.servlet.http.HttpServletRequest;
 @SessionAttributes("carOrder")
 public class BookController {
     
-    //@Autowired
     private CarRepository carRepository;
-    //@Autowired
     private CarOrderRepository carOrderRepository;
-    
+    private List<Car> carList;
     
     @Autowired
     public BookController(CarRepository carRepository, CarOrderRepository carOrderRepository) {
@@ -44,25 +42,63 @@ public class BookController {
     @PostMapping("/book")
     public String bookPage(HttpServletRequest req, Model model, @ModelAttribute("carOrder") OrderCar orderCar) {
         
-        //take data
-        String localization = req.getParameter("localization");
-        LocalDate rentStartDate = stringToLocalDate(req.getParameter("rentStart"));
-        LocalDate rentEndDate = stringToLocalDate(req.getParameter("rentEnd"));
+        //first search, without filter available on webpage
+        if(req.getParameter("localization") != null && req.getParameter("rentStart") != null &&
+                req.getParameter("rentEnd") != null) {
+            //take data
+            String localization = req.getParameter("localization");
+            LocalDate rentStartDate = stringToLocalDate(req.getParameter("rentStart"));
+            LocalDate rentEndDate = stringToLocalDate(req.getParameter("rentEnd"));
+
+            //find available cars
+            TimePeriod bookTimePeriod = new TimePeriod(rentStartDate, rentEndDate);
+            BookAssistant bookAssistant = new BookAssistant(carRepository, carOrderRepository);
+            carList = bookAssistant.getCarsAvailableInTimePeriodAndLocalization(bookTimePeriod, localization);
+
+            //set data to session object
+            orderCar.setStartDate(rentStartDate);
+            orderCar.setEndDate(rentEndDate);
+            
+            //model.addAttribute("carList", carList);
+        }
+        //search with custom filters
+        else {
+            //filtr by category
+            String carCategory = req.getParameter("filterCarCategory");
+            carList = Car.findByCategory(carList, carCategory);
+            
+            //filtr by price
+            if(req.getParameter("filterCarByPrice") != null) {
+                carList = Car.findWithPriceLowerOrEqual(carList, Double.parseDouble(req.getParameter("filterCarByPrice")));
+            }
+        }
         
-        //find available cars
-        TimePeriod bookTimePeriod = new TimePeriod(rentStartDate, rentEndDate);
-        BookAssistant bookAssistant = new BookAssistant(carRepository, carOrderRepository);
-        List<Car> carList = 
-                bookAssistant.getCarsAvailableInTimePeriodAndLocalization(bookTimePeriod, localization);
+        if(carList.size() > 0) {
+            model.addAttribute("filterCarByPriceMin", Car.findWithMinPrice(carList).getPricePerDay());
+            model.addAttribute("filterCarByPriceMax", Car.findWithMaxPrice(carList).getPricePerDay());
+        } else {
+            model.addAttribute("filterCarByPriceMin", 0);
+            model.addAttribute("filterCarByPriceMax", 0);
+        }
         
-        //set data to session object
-        orderCar.setStartDate(rentStartDate);
-        orderCar.setEndDate(rentEndDate);
         
         model.addAttribute("carList", carList);
  
         return "book";
     }
+    
+    /*
+    @GetMapping("/book")
+    public String bookPageAfterFilters(Model model, @ModelAttribute("carOrder") OrderCar orderCar) {
+        
+        
+        //sortowanie car lists
+        System.out.println(carList.size());
+        
+        model.addAttribute("carList", carList);
+ 
+        return "book";
+    }*/
     
     /**
      * Method necessary for propoper injection of session attribute

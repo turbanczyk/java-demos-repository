@@ -7,9 +7,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
       xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Car Rental Service, strona wyszukiwania pojazdu</title>
-        <!--<!--         
-            box-sizing: border-box;
-        } -->
+        <script type="text/javascript" th:src="@{actions.js}"></script>
+       
+        
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
@@ -35,7 +35,35 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         
         <div class="row" th:if="${carList.size()} != 0">
             <div class="columnleft">
-                <p></p>
+                <form action="#" th:action="@{/book}" method="post">
+                    <h3>Filtry </h3>
+                    <h4>Kategoria samochodu: </h4>
+                    <p>
+                        <input type="radio" id="małe" name="filterCarCategory" value="małe" checked>
+                        <label for="małe">małe</label>
+                        <input type="radio" id="średnie" name="filterCarCategory" value="średnie">
+                        <label for="średnie">średnie</label>
+                        <input type="radio" id="kombi" name="filterCarCategory" value="kombi">
+                        <label for="kombi">kombi</label>
+                        <input type="radio" id="premium" name="filterCarCategory" value="premium">
+                        <label for="premium">premium</label>
+                        <input type="radio" id="minivany" name="filterCarCategory" value="minivany">
+                        <label for="minivany">minivany</label>
+                        <input type="radio" id="SUV" name="filterCarCategory" value="SUV">
+                        <label for="SUV">SUV</label>
+                    </p>
+                    <h4>Maksymalna cena: <span id="slider_value" style="color:black;"></span></h4>
+                    <p>
+                        <span th:text="${filterCarByPriceMin}"/>
+                        <input type="range" name="filterCarByPrice" 
+                            th:attr="min=${filterCarByPriceMin}, max=${filterCarByPriceMax}" 
+                            onchange="show_value(this.value);">
+                        <span th:text="${filterCarByPriceMax}"/>
+                    </p>
+
+                    <p><input type="submit" th:attr="value='Filtruj'" /></p>
+                </form>
+                
             </div>
             <div class="columnright">
                 
@@ -56,6 +84,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <td><img th:src="@{/images/dan-gold-N7RiDzfF2iw-unsplash.jpg}" width="100" /></td>
                                 <td>
                                     <div class="columncar">
+                                        <p th:text="'Kategoria: ' + ${car.category}">Kategoria: </p>
                                         <p th:text="'Liczba miejsc: ' + ${car.numberOfSeats}">Liczba miejsc: </p>
                                         <p th:text="'Dzienny limit kilometrów: ' + ${car.dailyKilometerLimit}">Dzienny limit kilometrów: </p>
                                     </div>

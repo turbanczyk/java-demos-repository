@@ -4,6 +4,9 @@
  */
 package com.carrental;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -350,6 +353,92 @@ public class CarTest {
         System.out.println("setLocalization");
         newCar.setLocalization("Warszawa");
         assertThat(newCar.getLocalization()).isEqualTo("Warszawa");
+    }
+
+    /**
+     * Test of findByCategory method, of class Car.
+     */
+    @Test
+    public void testFindByCategory() {
+        System.out.println("findByCategory");
+        ArrayList<Car> carList = new ArrayList<Car>();
+        carList.add(new Car("Mustang", "Ford", 120, 5, 500, "manualna", true, 
+                12345, "średnie", "Katowice"));
+        carList.add(new Car("Mondeo", "Ford", 120, 5, 500, "manualna", true, 
+                12345, "średnie", "Katowice"));
+        carList.add(new Car("ID3", "Volkswagen", 120, 5, 500, "manualna", true, 
+                12345, "małe", "Katowice"));
+        
+        String category = "średnie";
+        List newList = Car.findByCategory(carList, category);
+        assertThat(newList.size()).isEqualTo(2);
+        assertThat(carList.get(0).getModel()).isEqualTo("Mustang");
+        assertThat(carList.get(1).getModel()).isEqualTo("Mondeo");
+    }
+
+    /**
+     * Test of findWithMaxPrice method, of class Car.
+     */
+    @Test
+    public void testFindWithMaxPrice() {
+        System.out.println("findWithMaxPrice");
+        
+        ArrayList<Car> carList = new ArrayList<Car>();
+        carList.add(new Car("Mustang", "Ford", 120, 5, 500, "manualna", true, 
+                12345, "średnie", "Katowice"));
+        carList.add(new Car("Mondeo", "Ford", 90, 5, 500, "manualna", true, 
+                12345, "średnie", "Katowice"));
+        carList.add(new Car("ID3", "Volkswagen", 140, 5, 500, "manualna", true, 
+                12345, "małe", "Katowice"));
+        
+        assertThat(Car.findWithMaxPrice(carList).getPricePerDay()).isEqualTo(140);
+    }
+
+    /**
+     * Test of findWithMinPrice method, of class Car.
+     */
+    @Test
+    public void testFindWithMinPrice() {
+        System.out.println("findWithMinPrice");
+        
+        ArrayList<Car> carList = new ArrayList<Car>();
+        carList.add(new Car("Mustang", "Ford", 120, 5, 500, "manualna", true, 
+                12345, "średnie", "Katowice"));
+        carList.add(new Car("Mondeo", "Ford", 90, 5, 500, "manualna", true, 
+                12345, "średnie", "Katowice"));
+        carList.add(new Car("ID3", "Volkswagen", 140, 5, 500, "manualna", true, 
+                12345, "małe", "Katowice"));
+        
+        assertThat(Car.findWithMinPrice(carList).getPricePerDay()).isEqualTo(90);
+    }
+
+    /**
+     * Test of findWithPriceLowerOrEqual method, of class Car.
+     */
+    @Test
+    public void testFindWithPriceLowerOrEqual() {
+        System.out.println("findWithPriceLowerOrEqual");
+        
+        ArrayList<Car> carList = new ArrayList<Car>();
+        carList.add(new Car("Mustang", "Ford", 120, 5, 500, "manualna", true, 
+                12345, "średnie", "Katowice"));
+        carList.add(new Car("Mondeo", "Ford", 90, 5, 500, "manualna", true, 
+                12345, "średnie", "Katowice"));
+        carList.add(new Car("ID3", "Volkswagen", 140, 5, 500, "manualna", true, 
+                12345, "małe", "Katowice"));
+        
+        
+        List newList = Car.findWithPriceLowerOrEqual(carList, 120);
+        assertThat(newList.size()).isEqualTo(2);
+        
+        newList = Car.findWithPriceLowerOrEqual(carList, 119);
+        assertThat(newList.size()).isEqualTo(1);
+        
+        newList = Car.findWithPriceLowerOrEqual(carList, 80);
+        assertThat(newList.size()).isEqualTo(0);
+        
+        newList = Car.findWithPriceLowerOrEqual(carList, 150);
+        assertThat(newList.size()).isEqualTo(3);
     }
     
 }

@@ -7,6 +7,8 @@ package com.carrental;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import java.util.UUID;
+import java.util.List;
+import java.util.ArrayList;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -103,4 +105,50 @@ public class Car {
         this.category = category;
         this.localization = localization;
     }
+    
+    public static List<Car> findByCategory(List<Car> carList, String category) {
+        ArrayList<Car> filteredList = new ArrayList<>();
+        for(Car i : carList) {
+            if(i.getCategory().equals(category)) {
+                filteredList.add(i);
+            }
+        }
+        
+        return filteredList;
+    }
+    
+    public static Car findWithMaxPrice(List<Car> carList) {
+        Car car = carList.get(0);
+        
+        for(Car i : carList) {
+            if(i.getPricePerDay() > car.getPricePerDay()) {
+                car = i;
+            }
+        }
+        return car;
+    }
+    
+    public static Car findWithMinPrice(List<Car> carList) {  
+        Car car = carList.get(0);
+        
+        for(Car i : carList) {
+            if(i.getPricePerDay() < car.getPricePerDay()) {
+                car = i;
+            }
+        }
+        return car;
+    }
+    
+    public static List<Car> findWithPriceLowerOrEqual(List<Car> carList, double price) {
+        ArrayList<Car> filteredList = new ArrayList<>();
+        
+        for(Car i : carList) {
+            if(i.getPricePerDay() == price || i.getPricePerDay() < price) {
+                filteredList.add(i);
+            }
+        }
+        
+        return filteredList;
+    }
+
 }
