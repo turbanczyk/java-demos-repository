@@ -4,6 +4,7 @@
  */
 package com.carrental;
 
+import com.carrental.controller.HomeController;
 import java.time.LocalDate;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
