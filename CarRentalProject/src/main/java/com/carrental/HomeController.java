@@ -27,20 +27,20 @@ import java.util.stream.Collectors;
 @Controller
 public class HomeController {
     
+    @Autowired
     private JdbcTemplate jdbc;
     
-    
+    /*
     @Autowired
     public HomeController(JdbcTemplate jdbc) {
         this.jdbc = jdbc;
     }
+    */
     
     @GetMapping("/") 
     public String home(Model model) {
         
-        List<String> listOfCities = null;
-        listOfCities = jdbc.query("select localization from Car", this::mapRowToString);
-        
+        List<String> listOfCities = jdbc.query("select localization from Car", this::mapRowToString);
         //remove duplicates
         List<String> cleanedListOfCities = removeDuplicates(listOfCities);
         //sorting 

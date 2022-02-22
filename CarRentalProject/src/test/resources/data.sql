@@ -55,3 +55,6 @@ delete from User;
 insert into User values('1', 'user1', 'password1', 
     'Jan', 'Kowalski', 'Poland', 'Katowice', 'Orzeszkowa', 'DHEKD-3432', 
     'jan@kowalski.com', '123-456-789');
+insert into User values('2', 'user2', 'password2', 
+    'Jerzy', 'Nowak', 'Poland', 'Katowice', 'Poziomkowa', 'DHEKD-8632', 
+    'jerzy@nowak.com', '223-456-789');
