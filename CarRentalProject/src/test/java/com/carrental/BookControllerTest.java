@@ -4,9 +4,7 @@
  */
 package com.carrental;
 
-import javax.servlet.http.HttpServletRequest;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -14,19 +12,21 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Disabled;
+
+import static org.hamcrest.Matchers.containsString;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.junit.jupiter.api.extension.ExtendWith;
-
-import static org.mockito.Mockito.when;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
-
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.anonymous;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  *
@@ -35,17 +35,11 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
-@ExtendWith(MockitoExtension.class)
+//@ExtendWith(SpringExtension.class)
 public class BookControllerTest {
     
     @Autowired
-    private BookController controller;
-    
-    @Autowired
     private MockMvc mockMvc;
-    
-    @Mock
-    HttpServletRequest request;
     
     public BookControllerTest() {
     }
@@ -65,27 +59,51 @@ public class BookControllerTest {
     @AfterEach
     public void tearDown() {
     }
-
-    @Test
-    public void contextLoads() throws Exception {
-        System.out.println("contextLoads");
-        assertThat(controller).isNotNull();
-    }
     
     /**
      * Test of page method, of class BookController.
      */
     @Test
-    @Disabled
     public void testBookPage() throws Exception {
         System.out.println("bookPage");
         
-        when(request.getParameter("localization")).thenReturn("Rybnik");
-        when(request.getParameter("rentStart")).thenReturn("2022-02-22");
-        when(request.getParameter("rentEnd")).thenReturn("2022-02-25");
+
+        String localization = "Gliwice";
+        LocalDate rentStartDate = LocalDate.of(2022, 1, 19);
+        LocalDate rentEndDate = LocalDate.of(2022, 1, 22);
         
-        //Problem with mockito, this part doesn't work. Test disabled on this moment
-        //this.mockMvc.perform(post("/book")).andDo(print());
+        this.mockMvc.perform(post("/book")
+                .param("localization", localization)
+                .param("rentStart", rentStartDate.toString())
+                .param("rentEnd", rentEndDate.toString())
+                //.with(user("user1").password("password1").roles("USER"))
+                .with(anonymous())
+                .with(csrf())
+                )
+            //.andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().string(containsString("onchange=\"show_value(this.value);\" min=\"114.0\" max=\"214.0\">")))
+            .andExpect(content().string(containsString("Ford Focus")))
+            .andExpect(content().string(containsString("<input type=\"hidden\" name=\"carId\" value=\"samochod-3-id\"/>")))
+            .andExpect(content().string(containsString("<h3>Seria 3 BMW</h3>")))
+            .andExpect(content().string(containsString("<input type=\"hidden\" name=\"carId\" value=\"samochod-4-id\"/>")));
+        
+
+
+        localization = "Grenlandia";
+        this.mockMvc.perform(post("/book")
+                .param("localization", localization)
+                .param("rentStart", rentStartDate.toString())
+                .param("rentEnd", rentEndDate.toString())
+                //.with(user("user1").password("password1").roles("USER"))
+                .with(anonymous())
+                .with(csrf())
+                )
+            //.andDo(print())
+            .andExpect(status().isOk())
+            .andExpect(content().string(containsString("<h2>Brak dostępnych samochodów</h2>")));
+        
+        
     }
     
 }

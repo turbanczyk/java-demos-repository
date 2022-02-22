@@ -50,3 +50,8 @@ insert into Order_Car values ('10', '2',
     'samochod-4-id', '2022-01-29', '2022-01-30', '2022-01-15', '432');
 insert into Order_Car values ('11', '2', 
     'samochod-4-id', '2022-01-23', '2022-01-24', '2022-01-15', '432');
+
+delete from User;
+insert into User values('1', 'user1', 'password1', 
+    'Jan', 'Kowalski', 'Poland', 'Katowice', 'Orzeszkowa', 'DHEKD-3432', 
+    'jan@kowalski.com', '123-456-789');
