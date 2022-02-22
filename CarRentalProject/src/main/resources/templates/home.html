@@ -14,48 +14,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <form method="POST" th:action="@{/book}">
         <table border="0" align="center">
             
-            <!--<tbody>
-                <tr>
-                    <td width="200">Miejsce odbioru</td>
-                    <td><select name="localization">
-                            <option th:each="city : ${cities}" th:text="${city}" 
-                                    th:value="${city}">
-                        </select></td>
-                </tr>
-                <tr>
-                    <td>Data rozpoczęcia</td>
-                    <td><input type="date" id="start" name="rentStart" 
-                               th:value="${date}" th:attr="min=${date}"></td>
-                </tr>
-                <tr>
-                    <td>Data zakończenia</td>
-                    <td><input type="date" id="start" name="rentEnd" 
-                               th:value="${date}" th:attr="min=${date}"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="Szukaj"></td>
-                </tr>
-            </tbody>-->
-            
             
             <tbody>
                 <tr>
                     <td width="200">Miejsce odbioru</td>
                     <td><select name="localization">
-                            <option th:each="city : ${homeService.listOfCities}" th:text="${city}" 
+                            <option th:each="city : ${homeDto.listOfCities}" th:text="${city}" 
                                     th:value="${city}">
                         </select></td>
                 </tr>
                 <tr>
                     <td>Data rozpoczęcia</td>
                     <td><input type="date" id="start" name="rentStart" 
-                               th:value="${homeService.date}" th:attr="min=${homeService.date}"></td>
+                               th:value="${homeDto.date}" th:attr="min=${homeDto.date}"></td>
                 </tr>
                 <tr>
                     <td>Data zakończenia</td>
                     <td><input type="date" id="start" name="rentEnd" 
-                               th:value="${homeService.date}" th:attr="min=${homeService.date}"></td>
+                               th:value="${homeDto.date}" th:attr="min=${homeDto.date}"></td>
                 </tr>
                 <tr>
                     <td></td>

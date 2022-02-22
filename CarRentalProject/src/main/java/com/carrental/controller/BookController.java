@@ -2,8 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/springframework/Controller.java to edit this template
  */
-package com.carrental;
+package com.carrental.controller;
 
+import com.carrental.BookAssistant;
+import com.carrental.Car;
+import com.carrental.OrderCar;
+import com.carrental.TimePeriod;
 import com.carrental.data.CarRepository;
 import com.carrental.data.CarOrderRepository;
 
