@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/springframework/Controller.java to edit this template
  */
-package com.carrental;
+package com.carrental.controller;
 
 import com.carrental.entity.OrderCar;
 import com.carrental.entity.Car;
@@ -20,7 +20,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- *
+ * OrderManagementController accepts input and converts it to commands for the model or view
+ * responsible for user order management.
+ * 
  * @author tomeku
  */
 @Controller
@@ -41,7 +43,6 @@ public class OrderManagementController {
         
         List<Car> carList = new ArrayList<>();
         for (OrderCar o: userOrders) {
-            //Car c = carRepository.findById(o.getCarId()).get();
  
             carList.add(carRepository.findById(o.getCarId()).get());
         }

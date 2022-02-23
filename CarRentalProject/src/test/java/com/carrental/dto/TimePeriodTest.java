@@ -5,6 +5,9 @@
 package com.carrental.dto;
 
 import com.carrental.dto.TimePeriod;
+
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,9 +15,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Disabled;
-import java.time.LocalDate;
-import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Assertions;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 /**
  *
@@ -74,44 +78,6 @@ public class TimePeriodTest {
            TimePeriod c = new TimePeriod(LocalDate.of(2022, 1, 26), endDate);
         });
         
-    }
-    
-    /**
-     * Test of getStartDate method, of class TimePeriod.
-     */
-    @Test
-    public void testGetStartDate() {
-        System.out.println("getStartDate");
-        assertThat(timePeriod.getStartDate()).isEqualTo(LocalDate.of(2022, 1, 22));
-    }
-
-    /**
-     * Test of getEndDate method, of class TimePeriod.
-     */
-    @Test
-    public void testGetEndDate() {
-        System.out.println("getEndDate");
-        assertThat(timePeriod.getEndDate()).isEqualTo(LocalDate.of(2022, 1, 25));
-    }
-
-    /**
-     * Test of setStartDate method, of class TimePeriod.
-     */
-    @Test
-    public void testSetStartDate() {
-        System.out.println("setStartDate");
-        timePeriod.setStartDate(LocalDate.of(2019, 3, 1));
-        assertThat(timePeriod.getStartDate()).isEqualTo(LocalDate.of(2019, 3, 1));
-    }
-
-    /**
-     * Test of setEndDate method, of class TimePeriod.
-     */
-    @Test
-    public void testSetEndDate() {
-        System.out.println("setEndDate");
-        timePeriod.setEndDate(LocalDate.of(2019, 3, 1));
-        assertThat(timePeriod.getEndDate()).isEqualTo(LocalDate.of(2019, 3, 1));
     }
     
 }

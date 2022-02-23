@@ -27,11 +27,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * BookAssistant is the class which allow an application to proceed with
+ * BookService is the class which allow an application to proceed with
  * informations about availability of cars.
  * 
- * BookAssistant object is mainly responsible for process of finding available
- * cars and other necesseary during this things.
  * 
  * @author tomeku
  */
@@ -114,13 +112,23 @@ public class BookService {
         return carsList;
     }
     
-    
+    /**
+     * The method return list of Car based on criteria delivered by BookFormDto
+     * @param bookFormDto Dto with criterias
+     * @return Return list of Car objects
+     */
     public List<Car> getCarList(BookFormDto bookFormDto) {
         TimePeriod bookTimePeriod = new TimePeriod(stringToLocalDate(bookFormDto.getRentStart()), 
                 stringToLocalDate(bookFormDto.getRentEnd()));
         return getCarsAvailableInTimePeriodAndLocalization(bookTimePeriod, bookFormDto.getLocalization());
     }
     
+    /**
+     * The method return list of Car object based on criteria set in FilterFOrmDto object
+     * @param filterFormDto Dto with criterias
+     * @param carList List of car which should be filtered based on criteria delivered in Dto
+     * @return Return filtered list of Car objects
+     */
     public List<Car> filterCarList(FilterFormDto filterFormDto, List<Car> carList) {
 
         carList = Car.findByCategory(carList, filterFormDto.getFilterCarCategory());
@@ -129,7 +137,11 @@ public class BookService {
         return carList;
     }
     
-    
+    /**
+     * The method responsible for convert Strind data in format yyyy-MM-dd to object LocalDate
+     * @param date Date as a String in format yyyy-MM-dd
+     * @return Date converted to object type LocalDate
+     */
     public static LocalDate stringToLocalDate(String date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
         

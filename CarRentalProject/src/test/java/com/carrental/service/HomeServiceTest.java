@@ -7,18 +7,16 @@ package com.carrental.service;
 import com.carrental.dto.HomeDto;
 
 import java.time.LocalDate;
-import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ActiveProfiles;
 
 /**
@@ -27,7 +25,6 @@ import org.springframework.test.context.ActiveProfiles;
  */
 @SpringBootTest
 @ActiveProfiles("test")
-@AutoConfigureMockMvc
 public class HomeServiceTest {
     
     @Autowired
@@ -65,7 +62,5 @@ public class HomeServiceTest {
         assertThat(homeDto.getDate()).isEqualTo(LocalDate.now().toString());
         
     }
-
-    
     
 }

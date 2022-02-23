@@ -4,23 +4,21 @@
  */
 package com.carrental.service;
 
-import com.carrental.data.CarOrderRepository;
-import com.carrental.data.CarRepository;
-import com.carrental.data.UserRepository;
 import com.carrental.entity.Car;
 import com.carrental.entity.OrderCar;
+
 import java.time.LocalDate;
-import java.time.Month;
+
 import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.core.Authentication;
 import org.springframework.test.context.ActiveProfiles;
 
 /**

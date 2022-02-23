@@ -9,7 +9,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- *
+ * FilterFormDto class works as data transfer object in BookController.
+ * 
  * @author tomeku
  */
 @Getter

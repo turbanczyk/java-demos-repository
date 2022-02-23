@@ -9,8 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * LoginController is the controller responsible for correct redirect to 
- * standard login page in spring security.
+ * LoginController accepts input and converts it to commands for the model or view
+ * responsible for login process.
  * 
  * @author tomeku
  */

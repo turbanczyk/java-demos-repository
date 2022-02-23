@@ -21,7 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
- *
+ * HomeService is the class which allow an application to proceed with
+ * informations from received from HomeController.
  * @author tomeku
  */
 @Service
@@ -34,6 +35,11 @@ public class HomeService {
     private List<String> listOfCities;
     private String date;
     
+    /**
+     * The method responsible for return dto object HomeDto which contains information
+     * necesseary to proceed home page.
+     * @return Dto object HomeDto
+     */
     public HomeDto getHome() {
         listOfCities = jdbc.query("select localization from Car", this::mapRowToString);
         //remove duplicates
@@ -50,10 +56,22 @@ public class HomeService {
         return homeDto;
     }
     
+    /**
+     * The method responsible for proceeding with results of jdbc query
+     * @param rs ResultSet object
+     * @param rowNum Row number
+     * @return Return String
+     * @throws SQLException Exception
+     */
     private String mapRowToString(ResultSet rs, int rowNum) throws SQLException {
         return new String(rs.getString("localization"));
     }
     
+    /**
+     * The metody responsible for remove duplicates from List
+     * @param list List which should be proceed
+     * @return Return list without duplicates
+     */
     private List<String> removeDuplicates(List<String> list) {
         
         List<String> newList = list.stream().distinct().collect(Collectors.toList());

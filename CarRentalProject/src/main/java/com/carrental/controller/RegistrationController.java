@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 /**
- * RegistrationController is the controller responsible for correct user
- * registration process (for new users).
+ * RegistrationController accepts input and converts it to commands for the model or view
+ * responsible for registration of new user process.
  * 
  * @author tomeku
  */

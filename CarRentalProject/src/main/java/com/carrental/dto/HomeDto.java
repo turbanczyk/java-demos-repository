@@ -9,8 +9,10 @@ import java.util.List;
 import lombok.Setter;
 import lombok.Getter;
 import lombok.Builder;
+
 /**
- *
+ * HomeDto class work as data transfer object in HomeController.
+ * 
  * @author tomeku
  */
 @Getter

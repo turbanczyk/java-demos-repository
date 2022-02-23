@@ -10,7 +10,8 @@ import lombok.Setter;
 import lombok.AllArgsConstructor;
 
 /**
- *
+ * BookFormDto class works as data transfer object in BookController.
+ * 
  * @author tomeku
  */
 @Getter

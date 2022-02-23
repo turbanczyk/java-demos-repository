@@ -17,7 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
- * OrderCarController is controller responsible for correct order car process.
+ * OrderCarController accepts input and converts it to commands for the model or view
+ * responsible for order process.
  * 
  * @author tomeku
  */

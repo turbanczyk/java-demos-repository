@@ -106,6 +106,12 @@ public class Car {
         this.localization = localization;
     }
     
+    /**
+     * Method allows to find list of Car objects by the category of car.
+     * @param carList Car list which should be proceed
+     * @param category Category of car which should be fined
+     * @return Return list of cars which fulfill category criteria
+     */
     public static List<Car> findByCategory(List<Car> carList, String category) {
         ArrayList<Car> filteredList = new ArrayList<>();
         for(Car i : carList) {
@@ -117,6 +123,11 @@ public class Car {
         return filteredList;
     }
     
+    /**
+     * Method allows to find Car with the highest price from list of Car objects
+     * @param carList List which should be proceed
+     * @return Return Car with the highest price per day
+     */
     public static Car findWithMaxPrice(List<Car> carList) {
         Car car = carList.get(0);
         
@@ -128,6 +139,11 @@ public class Car {
         return car;
     }
     
+    /**
+     * Method allows to find Car with the lowest price from list of Car objects
+     * @param carList List of Car object which should be proceed
+     * @return Return Car with the lowest price per day
+     */
     public static Car findWithMinPrice(List<Car> carList) {  
         Car car = carList.get(0);
         
@@ -139,6 +155,13 @@ public class Car {
         return car;
     }
     
+    /**
+     * Method allows to find Cars objects where all objects pass criteria that price
+     * per day is lower or equal price criterium
+     * @param carList List which should be proceed
+     * @param price Maximum price
+     * @return Return list of Car objects where maximum price per day is equal price parameter
+     */
     public static List<Car> findWithPriceLowerOrEqual(List<Car> carList, double price) {
         ArrayList<Car> filteredList = new ArrayList<>();
         

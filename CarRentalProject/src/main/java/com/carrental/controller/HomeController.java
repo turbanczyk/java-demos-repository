@@ -12,7 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
 /**
- * HomeController is controller responsible for present home page of application.
+ * HomeController accepts input and converts it to commands for the model or view
+ * responsible for home page.
  * 
  * @author tomeku
  */

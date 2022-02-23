@@ -20,7 +20,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import java.util.List;
 
 /**
- * BookController is controller responsible for correct car search operation.
+ * BookController accepts input and converts it to commands for the model or view
+ * responsible for booking process.
  * 
  * @author tomeku
  */

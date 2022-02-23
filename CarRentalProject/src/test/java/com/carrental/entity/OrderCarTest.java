@@ -4,17 +4,15 @@
  */
 package com.carrental.entity;
 
-import com.carrental.entity.OrderCar;
+
 import java.time.LocalDate;
-import java.time.Month;
-import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Disabled;
 
 /**
@@ -49,19 +47,6 @@ public class OrderCarTest {
     @Test
     public void testConstructor() {
         System.out.println("testConstructor");
-        
-        /*
-        //User ID can't be empty or null
-        Exception thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-           OrderCar testOrder = new OrderCar(null, "123456", LocalDate.of(2022, 2, 17),
-                LocalDate.of(2022, 2, 19), LocalDate.of(2022, 2, 15), 432);
-        });
-        
-        thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-           OrderCar testOrder = new OrderCar("", "123456", LocalDate.of(2022, 2, 17),
-                LocalDate.of(2022, 2, 19), LocalDate.of(2022, 2, 15), 432);
-        });
-        */
         
         //Car ID can't be empty or null
         Exception thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -110,133 +95,6 @@ public class OrderCarTest {
                 LocalDate.of(2022, 2, 19), LocalDate.of(2022, 2, 15), -1);
         });
         
-    }
-    
-    /**
-     * Test of getId method, of class OrderCar.
-     */
-    @Test
-    public void testGetId() {
-        System.out.println("getId");
-        
-        //assertThat(orderCar.getId()).isNotEmpty();
-        assertThat(orderCar.getId()).isNotNull();
-    }
-
-    /**
-     * Test of getUserId method, of class OrderCar.
-     */
-    @Test
-    public void testGetUserId() {
-        System.out.println("getUserId");
-        
-        //assertThat(orderCar.getUserId()).isEqualTo(384050);
-    }
-
-    /**
-     * Test of getCarId method, of class OrderCar.
-     */
-    @Test
-    public void testGetCarId() {
-        System.out.println("getCarId");
-        
-        assertThat(orderCar.getCarId()).isEqualTo("123456");
-    }
-
-    /**
-     * Test of getStartDate method, of class OrderCar.
-     */
-    @Test
-    public void testGetStartDate() {
-        System.out.println("getStartDate");
-        
-        assertThat(orderCar.getStartDate()).isEqualTo(LocalDate.of(2022, 2, 17));
-    }
-
-    /**
-     * Test of getEndDate method, of class OrderCar.
-     */
-    @Test
-    public void testGetEndDate() {
-        System.out.println("getEndDate");
-        
-        assertThat(orderCar.getEndDate()).isEqualTo(LocalDate.of(2022, 2, 19));
-    }
-
-    /**
-     * Test of getPlacedAt method, of class OrderCar.
-     */
-    @Test
-    public void testGetPlacedAt() {
-        System.out.println("getPlacedAt");
-        
-        assertThat(orderCar.getPlacedAt()).isEqualTo(LocalDate.of(2022, 2, 15));
-    }
-
-    /**
-     * Test of setId method, of class OrderCar.
-     */
-    @Test
-    public void testSetId() {
-        System.out.println("setId");
-        
-        orderCar.setId(384050);
-        assertThat(orderCar.getId()).isEqualTo(384050);
-    }
-
-    /**
-     * Test of setUserId method, of class OrderCar.
-     */
-    @Test
-    public void testSetUserId() {
-        System.out.println("setUserId");
-        
-        orderCar.setUserId(384050);
-        assertThat(orderCar.getUserId()).isEqualTo(384050);
-    }
-
-    /**
-     * Test of setCarId method, of class OrderCar.
-     */
-    @Test
-    public void testSetCarId() {
-        System.out.println("setCarId");
-        
-        orderCar.setCarId("384050");
-        assertThat(orderCar.getCarId()).isEqualTo("384050");
-    }
-
-    /**
-     * Test of setStartDate method, of class OrderCar.
-     */
-    @Test
-    public void testSetStartDate() {
-        System.out.println("setStartDate");
-        
-        orderCar.setStartDate(LocalDate.of(2022, 2, 16));
-        assertThat(orderCar.getStartDate()).isEqualTo(LocalDate.of(2022, 2, 16));
-    }
-
-    /**
-     * Test of setEndDate method, of class OrderCar.
-     */
-    @Test
-    public void testSetEndDate() {
-        System.out.println("setEndDate");
-        
-        orderCar.setEndDate(LocalDate.of(2022, 2, 25));
-        assertThat(orderCar.getEndDate()).isEqualTo(LocalDate.of(2022, 2, 25));
-    }
-
-    /**
-     * Test of setPlacedAt method, of class OrderCar.
-     */
-    @Test
-    public void testSetPlacedAt() {
-        System.out.println("setPlacedAt");
-        
-        orderCar.setPlacedAt(LocalDate.of(2022, 2, 25));
-        assertThat(orderCar.getPlacedAt()).isEqualTo(LocalDate.of(2022, 2, 25));
     }
     
 }
