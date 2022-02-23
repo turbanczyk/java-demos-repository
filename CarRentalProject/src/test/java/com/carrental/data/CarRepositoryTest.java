@@ -5,7 +5,7 @@
 package com.carrental.data;
 
 import com.carrental.service.BookService;
-import com.carrental.Car;
+import com.carrental.entity.Car;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.withPrecision;

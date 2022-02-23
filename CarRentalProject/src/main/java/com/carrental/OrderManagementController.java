@@ -4,6 +4,8 @@
  */
 package com.carrental;
 
+import com.carrental.entity.OrderCar;
+import com.carrental.entity.Car;
 import com.carrental.data.CarOrderRepository;
 import com.carrental.data.CarRepository;
 import com.carrental.data.UserRepository;

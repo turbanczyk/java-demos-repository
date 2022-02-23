@@ -4,7 +4,7 @@
  */
 package com.carrental.data;
 
-import com.carrental.User;
+import com.carrental.entity.User;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

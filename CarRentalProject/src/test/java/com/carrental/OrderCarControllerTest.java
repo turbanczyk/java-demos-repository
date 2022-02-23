@@ -4,6 +4,7 @@
  */
 package com.carrental;
 
+import com.carrental.entity.OrderCar;
 import com.carrental.data.CarOrderRepository;
 
 import java.time.LocalDate;

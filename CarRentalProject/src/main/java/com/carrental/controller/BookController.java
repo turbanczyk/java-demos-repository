@@ -5,8 +5,8 @@
 package com.carrental.controller;
 
 import com.carrental.service.BookService;
-import com.carrental.Car;
-import com.carrental.OrderCar;
+import com.carrental.entity.Car;
+import com.carrental.entity.OrderCar;
 import com.carrental.dto.BookFormDto;
 import com.carrental.dto.FilterFormDto;
 

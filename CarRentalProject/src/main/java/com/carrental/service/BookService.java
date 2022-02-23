@@ -4,9 +4,9 @@
  */
 package com.carrental.service;
 
-import com.carrental.Car;
-import com.carrental.OrderCar;
-import com.carrental.TimePeriod;
+import com.carrental.entity.Car;
+import com.carrental.entity.OrderCar;
+import com.carrental.dto.TimePeriod;
 import com.carrental.data.CarRepository;
 import com.carrental.data.CarOrderRepository;
 import com.carrental.dto.BookFormDto;

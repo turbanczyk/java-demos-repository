@@ -4,7 +4,7 @@
  */
 package com.carrental.data;
 
-import com.carrental.Car;
+import com.carrental.entity.Car;
 
 import java.util.List;
 

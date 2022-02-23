@@ -7,7 +7,7 @@ package com.carrental.data;
 import java.util.List;
 import java.time.LocalDate;
 
-import com.carrental.OrderCar;
+import com.carrental.entity.OrderCar;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

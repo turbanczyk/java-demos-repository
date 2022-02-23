@@ -4,7 +4,7 @@
  */
 package com.carrental.security;
 
-import com.carrental.User;
+import com.carrental.entity.User;
 
 import lombok.Data;
 
