@@ -47,14 +47,6 @@ public class BookService {
     @Autowired
     private CarOrderRepository carOrderRepository;
     
-    /*
-    @Autowired
-    public BookService(CarRepository carRepository, CarOrderRepository carOrderRepository) {
-        this.carRepository = carRepository;
-        this.carOrderRepository = carOrderRepository;
-    }
-    */
-    
     /**
      * The method used to find that specified time period (checking time period)
      * is out of another time period (basic time period)

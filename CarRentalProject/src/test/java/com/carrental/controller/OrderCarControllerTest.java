@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-package com.carrental;
+package com.carrental.controller;
 
 import com.carrental.entity.OrderCar;
 import com.carrental.data.CarOrderRepository;
@@ -125,7 +125,6 @@ public class OrderCarControllerTest {
         LocalDate rentEndDate = LocalDate.of(2023, 1, 22);
         String carId = "samochod-4-id";
         double totalPrice = 214*4;
-        //int userId = 12343212;
         int userId = 1;
         
         orderCar.setCarId(carId);
