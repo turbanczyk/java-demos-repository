@@ -2,20 +2,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.carrental;
+package com.carrental.service;
 
+import com.carrental.Car;
+import com.carrental.OrderCar;
+import com.carrental.TimePeriod;
 import com.carrental.data.CarRepository;
 import com.carrental.data.CarOrderRepository;
+import com.carrental.dto.BookFormDto;
+import com.carrental.dto.FilterFormDto;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashSet;
+import lombok.AllArgsConstructor;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * BookAssistant is the class which allow an application to proceed with
@@ -26,26 +35,25 @@ import org.springframework.beans.factory.annotation.Autowired;
  * 
  * @author tomeku
  */
-
+@Service
 @Getter
 @Setter
 @NoArgsConstructor
-public class BookAssistant {
+//@AllArgsConstructor
+public class BookService {
     
+    @Autowired
     private CarRepository carRepository;
+    @Autowired
     private CarOrderRepository carOrderRepository;
     
-    /**
-     * Class constructor with two parameters.
-     * @param carRepository Object of class CarRepository
-     * @param carOrderRepository Object of class CarOrderRepository
-     */
+    /*
     @Autowired
-    public BookAssistant(CarRepository carRepository, 
-            CarOrderRepository carOrderRepository) {
+    public BookService(CarRepository carRepository, CarOrderRepository carOrderRepository) {
         this.carRepository = carRepository;
         this.carOrderRepository = carOrderRepository;
     }
+    */
     
     /**
      * The method used to find that specified time period (checking time period)
@@ -112,5 +120,27 @@ public class BookAssistant {
         }
         
         return carsList;
+    }
+    
+    
+    public List<Car> getCarList(BookFormDto bookFormDto) {
+        TimePeriod bookTimePeriod = new TimePeriod(stringToLocalDate(bookFormDto.getRentStart()), 
+                stringToLocalDate(bookFormDto.getRentEnd()));
+        return getCarsAvailableInTimePeriodAndLocalization(bookTimePeriod, bookFormDto.getLocalization());
+    }
+    
+    public List<Car> filterCarList(FilterFormDto filterFormDto, List<Car> carList) {
+
+        carList = Car.findByCategory(carList, filterFormDto.getFilterCarCategory());
+        carList = Car.findWithPriceLowerOrEqual(carList, Double.parseDouble(filterFormDto.getFilterCarByPrice()));
+        
+        return carList;
+    }
+    
+    
+    public static LocalDate stringToLocalDate(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
+        
+        return LocalDate.parse(date, formatter);
     }
 }

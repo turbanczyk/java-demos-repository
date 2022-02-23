@@ -4,12 +4,11 @@
  */
 package com.carrental.controller;
 
-import com.carrental.BookAssistant;
+import com.carrental.service.BookService;
 import com.carrental.Car;
 import com.carrental.OrderCar;
-import com.carrental.TimePeriod;
-import com.carrental.data.CarRepository;
-import com.carrental.data.CarOrderRepository;
+import com.carrental.dto.BookFormDto;
+import com.carrental.dto.FilterFormDto;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * BookController is controller responsible for correct car search operation.
@@ -33,49 +28,41 @@ import javax.servlet.http.HttpServletRequest;
 @SessionAttributes("carOrder")
 public class BookController {
     
-    private CarRepository carRepository;
-    private CarOrderRepository carOrderRepository;
     private List<Car> carList;
     
     @Autowired
-    public BookController(CarRepository carRepository, CarOrderRepository carOrderRepository) {
-        this.carRepository = carRepository;
-        this.carOrderRepository = carOrderRepository;
+    private BookService bookService;
+
+    @PostMapping("/book")
+    public String bookPage(BookFormDto bookFormDto, Model model, 
+            @ModelAttribute("carOrder") OrderCar orderCar) {
+        
+        carList = bookService.getCarList(bookFormDto);
+        
+        //set session atribute
+        orderCar.setStartDate(BookService.stringToLocalDate(bookFormDto.getRentStart()));
+        orderCar.setEndDate(BookService.stringToLocalDate(bookFormDto.getRentEnd()));
+            
+        //set attributes to model
+        if(!carList.isEmpty()) {
+            model.addAttribute("filterCarByPriceMin", Car.findWithMinPrice(carList).getPricePerDay());
+            model.addAttribute("filterCarByPriceMax", Car.findWithMaxPrice(carList).getPricePerDay());
+        } else {
+            model.addAttribute("filterCarByPriceMin", 0);
+            model.addAttribute("filterCarByPriceMax", 0);
+        }
+        model.addAttribute("carList", carList);
+ 
+        return "book";
     }
     
-    @PostMapping("/book")
-    public String bookPage(HttpServletRequest req, Model model, @ModelAttribute("carOrder") OrderCar orderCar) {
+    @PostMapping("/bookfilter")
+    public String bookPageFiltered(FilterFormDto filterFormDto, Model model) {
+          
+        carList = bookService.filterCarList(filterFormDto, carList);
         
-        //first search, without filter available on webpage
-        if(req.getParameter("localization") != null && req.getParameter("rentStart") != null &&
-                req.getParameter("rentEnd") != null) {
-            //take data
-            String localization = req.getParameter("localization");
-            LocalDate rentStartDate = stringToLocalDate(req.getParameter("rentStart"));
-            LocalDate rentEndDate = stringToLocalDate(req.getParameter("rentEnd"));
-
-            //find available cars
-            TimePeriod bookTimePeriod = new TimePeriod(rentStartDate, rentEndDate);
-            BookAssistant bookAssistant = new BookAssistant(carRepository, carOrderRepository);
-            carList = bookAssistant.getCarsAvailableInTimePeriodAndLocalization(bookTimePeriod, localization);
-
-            //set data to session object
-            orderCar.setStartDate(rentStartDate);
-            orderCar.setEndDate(rentEndDate);
-        }
-        //search with custom filters
-        else {
-            //filtr by category
-            String carCategory = req.getParameter("filterCarCategory");
-            carList = Car.findByCategory(carList, carCategory);
-            
-            //filtr by price
-            if(req.getParameter("filterCarByPrice") != null) {
-                carList = Car.findWithPriceLowerOrEqual(carList, Double.parseDouble(req.getParameter("filterCarByPrice")));
-            }
-        }
-        
-        if(carList.size() > 0) {
+        //set atributes to model
+        if(!carList.isEmpty()) {
             model.addAttribute("filterCarByPriceMin", Car.findWithMinPrice(carList).getPricePerDay());
             model.addAttribute("filterCarByPriceMax", Car.findWithMaxPrice(carList).getPricePerDay());
         } else {
@@ -95,12 +82,6 @@ public class BookController {
     @ModelAttribute("carOrder")
     public OrderCar orderCar() {
         return new OrderCar();
-    }
-    
-    private LocalDate stringToLocalDate(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
-        
-        return LocalDate.parse(date, formatter);
     }
     
 }

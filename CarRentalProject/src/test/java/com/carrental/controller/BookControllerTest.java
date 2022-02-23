@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-package com.carrental;
+package com.carrental.controller;
 
 import java.time.LocalDate;
 
@@ -87,6 +87,7 @@ public class BookControllerTest {
             .andExpect(content().string(containsString("<input type=\"hidden\" name=\"carId\" value=\"samochod-3-id\"/>")))
             .andExpect(content().string(containsString("<h3>Seria 3 BMW</h3>")))
             .andExpect(content().string(containsString("<input type=\"hidden\" name=\"carId\" value=\"samochod-4-id\"/>")));
+            
         
 
 

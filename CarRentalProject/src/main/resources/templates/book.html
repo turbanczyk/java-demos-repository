@@ -35,7 +35,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         
         <div class="row" th:if="${carList.size()} != 0">
             <div class="columnleft">
-                <form action="#" th:action="@{/book}" method="post">
+                <!--<form action="#" th:action="@{/book}" method="post">-->
+                <form action="#" th:action="@{/bookfilter}" method="post">
                     <h3>Filtry </h3>
                     <h4>Kategoria samochodu: </h4>
                     <p>
