@@ -33,8 +33,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     //for third method
     @Autowired
     private UserRepositoryUserDetailsService userDetailsService;
-    //private UserDetailsService userDetailsService;
-
     
     /*
     //First method of user set, configuration with setted users

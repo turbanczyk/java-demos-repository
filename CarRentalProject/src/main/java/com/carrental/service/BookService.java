@@ -37,7 +37,6 @@ import org.springframework.stereotype.Service;
 @Getter
 @Setter
 @NoArgsConstructor
-//@AllArgsConstructor
 public class BookService {
     
     @Autowired
@@ -53,19 +52,13 @@ public class BookService {
      * @return 
      */
     public boolean isTimePeriodOutOfTimePeriod(TimePeriod checkingPeriod, TimePeriod basicPeriod) {
-        boolean i = false;
-
-        //check left site of basic period
-        if (checkingPeriod.getEndDate().isBefore(basicPeriod.getStartDate())) {
-            i = true;
-        }
         
-        //check right site of basic period
-        if (checkingPeriod.getStartDate().isAfter(basicPeriod.getEndDate())) {
-            i = true;
+        if (checkingPeriod.getEndDate().isBefore(basicPeriod.getStartDate()) ||
+                checkingPeriod.getStartDate().isAfter(basicPeriod.getEndDate())) {
+            return true;
+        } else {
+            return false;
         }
-        
-        return i;
     }
     
     /**
