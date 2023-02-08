@@ -1,0 +1,21 @@
+version: '2.4'
+services:
+  db-dev:
+    image: db-mysql:1.0
+    build:
+      context: ${PWD}/configuration
+      dockerfile: ${PWD}/configuration/Dockerfile
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysecretpassword
+  db-test:
+    image: db-mysql:1.0
+    build:
+      context: ${PWD}/configuration
+      dockerfile: ${PWD}/configuration/Dockerfile
+    ports:
+      - 3307:3307
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysecretpassword
+      - MYSQL_TCP_PORT=3307
